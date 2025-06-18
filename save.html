@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot</title>
+    <link rel="stylesheet" href="bot.css">
+</head>
+<body>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body{
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+        text-transform: uppercase;
+        font-family: sans-serif;
+        
+    }
+    section{
+        width: 400px;
+        height: 400px;
+        padding-top: 100px;
+        margin: auto;
+        background-image: url(img/menu_img.avif);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border-radius: 15px;
+        margin-top: 100px;
+
+    }
+    .menu_h1{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-bottom: 25px;
+        font-size: 25px;
+        color: aliceblue;
+    }
+    .back{
+        width: 90%;
+        height: 20px;
+        background-color:red;
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 50px;
+        border-radius: 15px;
+        
+    }
+    .my_check{
+        width: 90%;
+        height: 20px;
+        background-color:red;
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 10px;
+        border-radius: 15px;
+    }
+    
+</style>
+    <section>
+        <h1 class="menu_h1">Welcome to Menu</h1>
+
+
+        <div class="menu_head">
+            <div class="drink" onclick="openDrink()"><h1 class="drink_h1">ichimliklar</h1></div>   
+            <div class="pepsi_set" id="pepsi_set_id">
+                <a class="pepsi" href="#">Pepsi  0.5L </a>
+                <a class="pepsi" href="#">Pepsi 1L</a>
+                <a class="pepsi" href="#">Pepsi 1.5L</a>
+                <a class="pepsi" href="#">Pepsi 2L</a>
+                </div>
+                <div class="fanta_set" id="fanta_set_id">
+                    <a class="pepsi" href="#">Fanta 0.5L </a>
+                    <a class="pepsi" href="#">Fanta 1L</a>
+                    <a class="pepsi" href="#">Fanta 1.5L</a>
+                    <a class="pepsi" href="#">Fanta 2L</a>
+                    </div>
+
+                
+
+            <div class="bread">
+            <h1 class="bread_h1"></h1>
+                
+            </div>
+            <!-- Menu head end -->
+        </div>
+        <div class="menu_midle"></div>
+        <div class="menu_foot"></div>
+
+    <div class="back_check">
+        <div class="back" onclick="back()">Back</div>
+        <div class="my_check" onclick="back()">Check</div >
+    </div>
+
+
+    </section>
+    
+<script src="bot.js"></script>
+</body>
+</html>
+<style>
+    /* drink start */
+
+
+.drink{
+    position: relative;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    background-image: url(img/drink_img.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: inline-block;
+}
+.drink_h1{
+    font-size: 15px;
+    /* border-radius: 15px; */
+    background-color: aqua;
+    position: absolute;
+    bottom: 10px;
+    
+}
+.pepsi_set,
+.fanta_set{
+    display: none;
+    cursor: pointer;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.pepsi_set a{
+    padding: 15px 5px;
+    text-decoration: none;
+    color: black;
+    background-color: blue;
+    border-radius:50px;
+}
+.fanta_set a{
+    width: 50px;
+    height: 50px;
+
+    /* padding: 15px 5px; */
+    text-decoration: none;
+    margin-top: 20px;  
+    background-color: orange; 
+    border-radius: 50px;
+
+}
+
+.active{
+    display: block;
+    opacity: 1;
+    transition: 0.5s linear;
+    transform: scale(1);
+     
+}
+.hidden{
+    opacity: 0;
+    display: none;
+    transition: 0.5s linear;
+    transform:scale(0)
+}
+/* drink end */
+
+</style>
+<script>
+    
+
+
+
+
+
+
+
+
+
+
+
+    // drink start
+
+    function  openDrink(){
+
+        document.querySelector('.drink').classList.add('hidden')
+        document.getElementById('pepsi_set_id').classList.add('active')
+        document.getElementById('fanta_set_id').classList.add('active')
+        
+    }
+    function back(){
+        document.querySelector('.drink').classList.remove('hidden')
+        document.getElementById('pepsi_set_id').classList.remove('active')
+        document.getElementById('fanta_set_id').classList.remove('active')
+    }
+    // drink end
+
+</script>
+
+
+
+
+
+
+
+
+<script>
+    // drink start
+function openDrink() {
+    document.querySelector('.drink').classList.add('hidden');
+    document.getElementById('pepsi_set_id').classList.add('active');
+    document.getElementById('fanta_set_id').classList.add('active');
+}
+
+function back() {
+    document.querySelector('.drink').classList.remove('hidden');
+    document.getElementById('pepsi_set_id').classList.remove('active');
+    document.getElementById('fanta_set_id').classList.remove('active');
+}
+// drink end
+
+// check total
+const products = document.querySelectorAll('.pepsi_div');
+const checkOut = document.getElementById('checkOutID');
+const Total = document.getElementById('totalID');
+let total = 0;
+const cart = {};
+
+products.forEach(pepsi_div => {
+    pepsi_div.addEventListener('click', () => {
+        const productName = pepsi_div.getAttribute('data-name');
+        const productPrice = parseInt(pepsi_div.getAttribute('data-price'));
+
+        if (cart[productName]) {
+            // Если товар уже есть в корзине, увеличиваем его количество
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            // Если товара нет в корзине, добавляем его
+            cart[productName] = { quantity: 1, price: productPrice };
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.innerHTML = `${productName} - ${productPrice} so'm <span class="quantity">1</span>`;
+            checkOut.appendChild(checkItems);
+        }
+
+        // Обновляем итоговую сумму
+        total += productPrice;
+        Total.textContent = total;
+    });
+});
+// check total end
+
+</script>
+
+
+
+
+
+<!-- bread to basket -->
+ <script>
+    // bread start
+function openBread() {
+    document.querySelector('.bread').classList.add('hidden');
+    document.querySelector('.drink').classList.add('hidden');
+    document.getElementById('breadCollectID').classList.add('active');
+}
+
+// Добавление хлеба в корзину
+const breadProducts = document.querySelectorAll('.breadDiv'); // Селектим все хлебные элементы
+breadProducts.forEach(breadDiv => {
+    breadDiv.addEventListener('click', () => {
+        const productName = breadDiv.getAttribute('data-name');
+        const productPrice = parseInt(breadDiv.getAttribute('data-price'));
+        
+        // Отображение количества товаров в корзине
+        document.querySelector('.cartQuantity').classList.add('active');
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name ="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.innerHTML = `${productName} - ${productPrice} so'm <span class="quantity">1</span>`;
+            checkOut.appendChild(checkItems);
+        }
+
+        total += productPrice; // Добавляем цену товара в общий итог
+        Total.textContent = total; // Обновляем итоговую сумму
+
+        cartItemCount += 1; // Увеличиваем счетчик товаров в корзине
+        cartQuantity.textContent = cartItemCount;
+    });
+});
+
+ </script>

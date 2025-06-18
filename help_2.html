@@ -1,0 +1,122 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        justify-content: center;
+        margin: auto;
+    }
+
+    .button_section {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+
+    .check {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 400px;
+        height: 400px;
+        background-color: #ffffff8c;
+        border: 1px solid #000;
+        border-radius: 25px;
+        margin-top: 10px;
+    }
+
+    .check_total {
+        position: absolute;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-family: sans-serif;
+        bottom: 0;
+    }
+
+    .check_px {
+        border-bottom: 1px solid #000000;
+        padding: 8px 0;
+    }
+</style>
+
+<body>
+    <div class="button_section">
+        <button data-name="Pen 1" data-price="1000">Pen 1</button>
+        <button data-name="Pen 2" data-price="1500">Pen 2</button>
+        <button data-name="Pen 3" data-price="2000">Pen 3</button>
+    </div>
+    <div class="check">
+        <h1>Your Check</h1>
+        <div class="check_out" id="check_out"></div>
+        <div class="check_total">
+            Total: <span id="total_price">0</span> so'm
+        </div>
+    </div>
+
+    <script>
+        const products = document.querySelectorAll('button');
+        const check_out = document.getElementById('check_out');
+        const total_price_element = document.getElementById('total_price');
+        
+        let total = 0;
+
+        products.forEach(button => {
+            button.addEventListener('click', () => {
+                const product_name = button.getAttribute('data-name');
+                const product_price = parseInt(button.getAttribute('data-price'));
+
+                // Add product to checkout
+                const check_items = document.createElement('div');
+                check_items.classList.add('check_px');
+                check_items.innerHTML = `${product_name} - ${product_price} so'm`;
+                check_out.appendChild(check_items);
+
+                // Update total price
+                total += product_price;
+                total_price_element.textContent = total;
+            });
+        });
+    </script>
+</body>
+
+</html>

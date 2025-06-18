@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentww</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        justify-content: center;
+        margin: auto;
+        background-color: #f0f0f0;
+        font-family: Arial, sans-serif;
+    }
+
+    .button_section {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    button {
+        width: 60px;
+        height: 60px;
+        cursor: pointer;
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .check {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        width: 400px;
+        height: 400px;
+        background-color: #ffffff;
+        border: 1px solid #000;
+        border-radius: 25px;
+        margin-top: 10px;
+        background-color: #f9f9f9;
+        overflow-y: auto;
+    }
+
+    .check_total {
+        position: absolute;
+        margin-top: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-family: sans-serif;
+        bottom: 0;
+        background-color: #4CAF50;
+        color: white;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .check_px {
+        border-bottom: 1px solid #000000;
+        padding: 8px 0;
+        background-color: #f9f9f9;
+    }
+
+    .check_px:nth-child(even) {
+        background-color: #f1f1f1;
+    }
+
+    .quantity {
+        background-color: #4CAF50;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 12px;
+        font-weight: bold;
+    }
+
+    .check_out {
+        border-bottom: none;
+        width: 100%;
+    }
+
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .quantity-controls button {
+        width: 30px;
+        height: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+    }
+
+    .quantity-controls button:hover {
+        background-color: #ccc;
+    }
+</style>
+
+<body>
+    <div class="button_section">
+        <button data-name="pen 1" data-price="1000">pen 1</button>
+        <button data-name="pen 2" data-price="1500">pen 2</button>
+        <button data-name="pen 3" data-price="2000">pen 3</button>
+    </div>
+    <div class="check">
+        <h1>You Check</h1>
+        <div class="check_out" id="check_outID"></div>
+        <div class="check_total">
+            total <span id="total_price">0</span> so'm
+        </div>
+    </div>
+
+    <script>
+        const products = document.querySelectorAll('button');
+        const check_out = document.getElementById('check_outID');
+        const total_price_element = document.getElementById('total_price');
+        let total = 0;
+
+        // Храним информацию о товарах в чеке (для подсчета количества)
+        const cart = {};
+
+        products.forEach(button => {
+            button.addEventListener('click', () => {
+                const product_name = button.getAttribute('data-name');
+                const product_price = parseInt(button.getAttribute('data-price'));
+
+                // Проверяем, был ли уже добавлен товар в чек
+                if (cart[product_name]) {
+                    // Если товар уже есть, увеличиваем его количество
+                    cart[product_name].quantity += 1;
+                    // Обновляем отображение количества товара в чеке
+                    const item = document.getElementById(product_name);
+                    item.querySelector('.quantity').textContent = cart[product_name].quantity;
+                } else {
+                    // Если товар еще не добавлен, создаем новый элемент
+                    cart[product_name] = { quantity: 1, price: product_price };
+
+                    const checkItems = document.createElement('div');
+                    checkItems.classList.add('check_px');
+                    checkItems.id = product_name; // Уникальный id для каждого товара
+                    checkItems.innerHTML = `${product_name} - ${product_price} so'm 
+                    <span class="quantity">1</span>
+                    <div class="quantity-controls">
+                        <button class="decrease">-</button>
+                        <button class="increase">+</button>
+                    </div>`;
+                    check_out.appendChild(checkItems);
+
+                    // Добавление обработчиков для кнопок увеличения/уменьшения
+                    checkItems.querySelector('.decrease').addEventListener('click', () => {
+                        if (cart[product_name].quantity > 1) {
+                            cart[product_name].quantity -= 1;
+                            checkItems.querySelector('.quantity').textContent = cart[product_name].quantity;
+                            total -= product_price;
+                            total_price_element.textContent = total;
+                        }
+                    });
+
+                    checkItems.querySelector('.increase').addEventListener('click', () => {
+                        cart[product_name].quantity += 1;
+                        checkItems.querySelector('.quantity').textContent = cart[product_name].quantity;
+                        total += product_price;
+                        total_price_element.textContent = total;
+                    });
+                }
+
+                // Обновляем итоговую сумму
+                total += product_price;
+                total_price_element.textContent = total;
+            });
+        });
+    </script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Показать/Скрыть div</title>
+    <style>
+        #hiddenDiv {
+            display: none;
+            /* Изначально div скрыт */
+            margin-top: 10px;
+            padding: 10px;
+            background-color: lightblue;
+        }
+
+        .drinkDiv {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="drinkDiv" data-name="Coke" data-price="10">
+        <span>Coke</span>
+        <span>10 so'm</span>
+    </div>
+
+    <!-- Скрытые label и checkbox, которые будут показываться при нажатии на напиток -->
+    <div id="checkboxContainer" style="display: none;">
+        <label for="extraOption">Добавить опцию:</label>
+        <input type="checkbox" id="extraOption" name="extraOption">
+    </div>
+
+
+
+
+    <label for="toggleCheckbox">Показать дополнительный блок</label>
+    <input type="checkbox" id="toggleCheckbox">
+
+    <div id="hiddenDiv">
+        Это скрытый блок! Он появится, когда вы отметите чекбокс.
+    </div>
+
+    <script>
+        // Получаем элементы
+        const checkbox = document.getElementById('toggleCheckbox');
+        const hiddenDiv = document.getElementById('hiddenDiv');
+
+        // Добавляем обработчик события на чекбокс
+        checkbox.addEventListener('click', function () {
+            // Если чекбокс отмечен, показываем div, если не отмечен, скрываем
+            if (checkbox.checked) {
+                hiddenDiv.style.display = 'block';
+            } else {
+                hiddenDiv.style.display = 'none';
+            }
+        });
+
+        const drinkProducts = document.querySelectorAll('.drinkDiv'); // Import product
+      
+        // Loop over each drink product
+        drinkProducts.forEach(drinkDiv => {
+            drinkDiv.addEventListener('click', () => {
+                const productName = drinkDiv.getAttribute('data-name');
+                const productPrice = parseInt(drinkDiv.getAttribute('data-price'));
+        
+                // Show cart quantity and check box container
+                document.querySelector('.cartQuantity').classList.add('active');
+                checkBoxContainer.style.display = 'block';
+        
+                // If product already exists in the cart, update the quantity
+                if (cart[productName]) {
+                    cart[productName].quantity += 1;
+                    const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+                    checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+                } 
+                else {
+                    // If it's a new product, add to the cart
+                    cart[productName] = { quantity: 1, price: productPrice };
+        
+                    // Create the new check item for the product
+                    const checkItems = document.createElement('div');
+                    checkItems.classList.add('checkItem');
+                    checkItems.setAttribute('data-name', productName);
+                    checkItems.innerHTML = `
+                        ${productName} - ${productPrice} so'm
+                        <div class="quantityControls">
+                            <button class="minus">-</button>
+                            <button class="plus">+</button>
+                            <span class="quantity">1</span>       
+                        </div>
+                    `;
+                    checkOut.appendChild(checkItems);
+        
+                    // Add event listeners to the quantity controls
+                    checkItems.querySelector('.minus').addEventListener('click', () => {
+                        if (cart[productName].quantity > 1) {
+                            cart[productName].quantity -= 1;
+                            checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                            total -= productPrice;
+                            Total.textContent = total;
+                        }
+                    });
+        
+                    checkItems.querySelector('.plus').addEventListener('click', () => {
+                        cart[productName].quantity += 1;
+                        checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                        total += productPrice;
+                        Total.textContent = total;
+                    });
+                }
+        
+                // Update total and cart item count
+                total += productPrice;
+                Total.textContent = total;
+                cartItemCount += 1;
+                cartQuantity.textContent = cartItemCount;
+            });
+        });
+        
+    </script>
+
+
+
+</body>
+
+</html>
+
+
+
+<!-- 
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+<script>
+    
+drinkProducts.forEach(drinkDiv => {
+    drinkDiv.addEventListener('click', () => {
+        const productName = drinkDiv.getAttribute('data-name')
+        const productPrice = parseInt(drinkDiv.getAttribute('data-price'))
+        document.querySelector('.cartQuantity').classList.add('active')
+
+
+        checkBoxContainer.style.display = 'block'
+         
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name ="${productName}"]`)
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        }
+        else {
+            cart[productName] = { quantity: 1, price: productPrice }
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem')
+            checkItems.setAttribute('data-name', productName);
+            checkItems.innerHTML = `${productName} - ${productPrice} so'm <span class = "quantity">1</span>`
+            checkOut.appendChild(checkItems)
+            
+        }
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1
+        cartQuantity.textContent = cartItemCount;
+        //            cartQuantity.classList//
+    })
+})
+</script>

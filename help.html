@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Электронный тасбех</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="tasbih-container">
+        <h1>Электронный Тасбех</h1>
+        <div class="counter">
+            <p id="count">0</p> <!-- Тут отображается счетчик -->
+        </div>
+
+
+        <button id="increment">+</button>
+        <button id="reset">Сбросить</button>
+    </div>
+<style>
+    /* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.tasbih-container {
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.counter {
+    font-size: 40px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+</style>
+    <script >
+        // Инициализация переменных
+let count = 0;
+const countDisplay = document.getElementById("count"); // Элемент для отображения счётчика p 
+const incrementButton = document.getElementById("increment"); // Кнопка для увеличения счётчика 
+const resetButton = document.getElementById("reset"); // Кнопка для сброса счётчика
+
+// Функция увеличения счётчика на 1
+incrementButton.addEventListener("click", () => {
+    count++;
+    countDisplay.textContent = count;
+});
+
+// Функция сброса счётчика
+resetButton.addEventListener("click", () => {
+    count = 0;
+    countDisplay.textContent = count;
+});
+
+    </script>
+</body>
+</html>

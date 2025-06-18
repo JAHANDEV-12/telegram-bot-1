@@ -1,0 +1,456 @@
+    /* drink start */
+
+
+    .drink,
+    .bread,
+    .salad,
+    .kofe,
+    .natioanalFood1,
+    .natioanalFood2,
+    .UygurFood,
+    .KomboFood,
+    .setShashlik,
+    .fastFood,
+    .cake,
+    .grill {
+
+        position: relative;
+        cursor: pointer;
+        width: 100px;
+        height: 100px;
+        border-radius: 15px;
+    }
+
+    .drink {
+        background-image: url(img/drink_img.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .bread {
+        background-image: url(img/bread_image.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .salad {
+        background-image: url(img/salad_image.webp);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+
+    .kofe {
+        background-image: url(img/kofeimg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .natioanalFood1 {
+        background-image: url(img/nationalfood1img.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .natioanalFood2 {
+        background-image: url(img/nationalfood2img.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .UygurFood {
+        background-image: url(img/uygurFood.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .KomboFood {
+        background-image: url(img/KomboFoodImg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .setShashlik {
+        background-image: url(img/setshashlik.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+
+    }
+
+    .fastFood {
+        background-image: url(img/fastFoodimg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .cake {
+        background-image: url(img/cakeimg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .grill {
+        background-image: url(img/grill.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: inline-block;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    .drinkH1,
+    .breadH1,
+    .saladH1,
+    .kofeH1,
+    .NationalFood1H1,
+    .NationalFood2H1,
+    .UygurFoodH1,
+    .grillH1,
+    .komboFoodH1,
+    .fastFoodH1,
+    .setShashlikH1,
+    .cakeH1 {
+        font-size: 15px;
+        /* border-radius: 15px; */
+        background-color: aqua;
+        position: absolute;
+        bottom: -30px;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .NationalFood1H1,
+    .NationalFood2H1,
+    .UygurFoodH1,
+    .komboFoodH1 {
+        position: absolute;
+        bottom: -50px;
+    }
+    
+    .breadH1{
+        left: 10px;
+
+    }
+    .saladH1{
+        left: 30px;
+    }
+    .kofeH1 {
+        font-size: 15px;
+        left: 30px;
+    }
+
+    .setShashlikH1 {
+        font-size: 13px;
+    }
+
+    .grillH1 {
+        left: 30px;
+    }
+
+    /* set and collect */
+    .drinkCollect,
+    .breadCollect,
+    .saladCollect,
+    .kofeCollect,
+    .natioanalFood1Collect,
+    .natioanalFood2Collect,
+    .UygurFoodCollect,
+    .KomboFoodCollect,
+    .setShashlikCollect,
+    .fastFoodCollect,
+    .cakeCollect,
+    .grillCollect {
+        position: relative;
+        opacity: 0;
+        cursor: pointer;
+        justify-content: center;
+        transition: 0.5s linear;
+        transform: scale(0);
+        display: none;
+    }
+
+
+    /* set and collect */
+
+
+
+
+    /* inner info style */
+
+    .drinkCollectInner,
+    .breadCollectInner,
+    .saladCollectInner,
+    .kofeCollectInner,
+    .natioanalFood1CollectInner,
+    .natioanalFood2CollectInner,
+    .UygurFoodCollectInner,
+    .KomboFoodCollectInner,
+    .setShashlikCollectInner,
+    .fastFoodCollectInner,
+    .cakeCollectInner,
+    .grillCollectInner {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 20px;
+    }
+    /* inner info style */
+
+
+
+
+    /* product div */
+    .drinkDiv,
+    .drinkDiv,
+    .breadDiv,
+    .saladDiv,
+    .kofeDiv,
+    .natioanalFood1Div,
+    .natioanalFood2Div,
+    .UygurFoodDiv,
+    .KomboFoodDiv,
+    .setShashlikDiv,
+    .fastFoodDiv,
+    .cakeDiv,
+    .grillDiv
+    {
+        position: relative;
+        background-color: gray;
+        width: 80px;
+        height: 100px;
+        border-radius: 20px;
+    }
+
+
+    /* product div */
+
+
+
+
+    /* product h1 */
+    .pepsi_h1,
+    .drinkDivH1,
+    .breadDivH1,
+    .saladDivH1,
+    .kofeDivH1,
+    .natioanalFood1DivH1,
+    .natioanalFood2DivH1,
+    .UygurFoodDivH1,
+    .KomboFoodDivH1,
+    .setShashlikDivH1,
+    .fastFoodDivH1,
+    .cakeDivH1,
+    .grillDivH1 {
+        color: rgb(5, 5, 112);
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    .drinkDivH1{
+        font-size: 11px;
+    }   
+
+    .breadDivH1{
+        color: gold;
+        font-size: 11px;
+        margin-top: 5px;
+        padding-top: 5px;
+    }
+    .saladDivH1 {
+        color: gold;
+        font-size: 11px;
+        margin-top: 5px;
+        padding-top: 5px;
+    }
+    .kofeDivH1{
+        font-size: 11px;
+    }
+    .natioanalFood1Div h1{
+        font-size: 12px;
+    }
+    .natioanalFood2Div h1{
+        font-size: 12px;
+        padding-top: 5px;
+    }
+    .UygurFoodDiv h1{
+        font-size: 12px;
+    }
+    .KomboFoodDiv{
+        font-size: 12px;
+    }
+    .KomboFoodDiv h1{
+        font-size: 12px;
+    }
+
+    /* product h1 */
+
+
+    .pepsi_div img {
+        width: 40px;
+        height: 60px;
+        padding: 15px 5px;
+        text-decoration: none;
+        color: black;
+        /* background-color: blue; */
+        display: none;
+        border-radius: 5px;
+    }
+
+
+    /* product p */
+
+    .drinkDiv p,
+    .breadDiv  p,
+    .saladDiv p,
+    .kofeDiv p,
+    .natioanalFood1Div p,
+    .natioanalFood2Div p,
+    .UygurFoodDiv p,
+    .KomboFoodDiv p,
+    .setShashlikDiv p,
+    .fastFoodDiv p,
+    .cakeDiv p,
+    .grillDiv p {
+        position: absolute;
+        background-color: gold;
+        border-radius: 15px;
+        /* margin-bottom: 5px; */
+        font-size: 13px;
+        width: 100%;
+        bottom: 5px;
+    }
+
+    /* product p */
+
+
+
+
+
+
+
+
+    .quantitiControls{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+
+    }
+
+    .quantityControls button{
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        background-color: green;
+        color: #FFF;
+        border-radius: 50%;
+        
+    }
+
+
+    .quantity-controls button:hover {
+        background-color: #ccc;
+    }
+
+
+
+
+
+    /* bread end */
+
+
+
+
+    /* salad start */
+
+
+
+
+
+
+
+    .UygurFoodH1 {
+        position: absolute;
+        bottom: -50px;
+    }
+
+    .komboFoodH1 {
+        font-size: 12.5px;
+        bottom: -48px;
+
+
+    }
+
+    /* .nationalFood1Inner{
+        
+    } */
+
+    .active {
+        opacity: 1;
+        transition: opacity ease 0.5s, transform 0.5s linear;
+        transform: scale(1);
+
+    }
+
+    .hidden {
+        opacity: 0;
+        transition: opacity ease 0.5s, transform 0.5s linear;
+        transform: scale(0);
+        display: none;
+    }
+
+
+    /* drink end */
+
+
+
+
+    /* 
+
+
+
+    */

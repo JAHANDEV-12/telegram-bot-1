@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поделиться геолокацией</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Поделитесь своей геолокацией</h2>
+    
+    <!-- Инпут для отображения координат -->
+    <input type="text" id="locationInput" placeholder="Геолокация появится здесь" readonly>
+
+    <!-- Кнопка для получения и отображения геолокации -->
+    <button onclick="getLocation()">Поделиться геолокацией</button>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Геолокация не поддерживается этим браузером.");
+            }
+        }
+
+        function showPosition(position) {
+            let lat = position.coords.latitude;
+            let lng = position.coords.longitude;
+            
+            // Заполняем инпут значениями координат
+            document.getElementById('locationInput').value = `Широта: ${lat}, Долгота: ${lng}`;
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("Пользователь отклонил запрос на получение локации.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Не удалось определить местоположение.");
+                    break;
+                case error.TIMEOUT:
+                    alert("Запрос на получение местоположения превысил время ожидания.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("Неизвестная ошибка.");
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
