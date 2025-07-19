@@ -16,9 +16,10 @@
 
         position: relative;
         cursor: pointer;
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 15px;
+        border: 2px solid#ced870;
     }
 
     .drink {
@@ -111,6 +112,7 @@
         border-top-right-radius: 0px;
         border-bottom-left-radius: 0px;
 
+
     }
 
     .fastFood {
@@ -143,10 +145,6 @@
         border-bottom-left-radius: 0px;
     }
 
-    .drinkH1,
-    .breadH1,
-    .saladH1,
-    .kofeH1,
     .NationalFood1H1,
     .NationalFood2H1,
     .UygurFoodH1,
@@ -155,41 +153,98 @@
     .fastFoodH1,
     .setShashlikH1,
     .cakeH1 {
-        font-size: 15px;
+        font-size: 12px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
         /* border-radius: 15px; */
         background-color: aqua;
         position: absolute;
         bottom: -30px;
         border-top-left-radius: 5px;
         border-bottom-right-radius: 5px;
+
     }
 
+    .drinkH1,
+    .breadH1,
+    .saladH1,
+    .kofeH1 {
+        font-size: 12px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        /* border-radius: 15px; */
+        background-color: aqua;
+        position: absolute;
+        bottom: -30px;
+        border-top-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        padding: 3px 3px;
+        
+    }
+      .drinkH1{
+        font-size: 13px;
+        left: 5px;
+        padding: 5px 20px;
+      }
+      .breadH1{
+        font-size: 0.80rem;
+        left: -3px;
+      }
+      .saladH1{
+        left: 5px;
+        padding: 5px 15px;
+      }
+ 
     .NationalFood1H1,
     .NationalFood2H1,
-    .UygurFoodH1,
     .komboFoodH1 {
         position: absolute;
         bottom: -50px;
+        padding: 1.5px 1.50px;
     }
-    
-    .breadH1{
-        left: 10px;
 
+    .fastFoodH1,
+    .setShashlikH1 {
+        position: absolute;
+        bottom: -40px;
+        padding: 1.5px 1.50px;
     }
-    .saladH1{
-        left: 30px;
+    .cakeH1{
+        position: absolute;
+        bottom: -40px;
+        padding: 9px 12px;
+        left: 3px;
     }
-    .kofeH1 {
-        font-size: 15px;
-        left: 30px;
+    .fastFoodH1 {
+        position: absolute;
+        bottom: -40px;
+        padding: 2px 2px;
+        margin-top: 20px;
     }
 
     .setShashlikH1 {
-        font-size: 13px;
+        margin-top: 10px;
     }
 
+    .saladH1 {
+
+        left: 15px;
+    }
+
+    .kofeH1 {
+        font-size: 12px;
+        left: 15px;
+    }
+
+
+
+    .UygurFoodH1{
+        padding: 8px 2px;
+    }
     .grillH1 {
-        left: 30px;
+        position: absolute;
+        bottom: -40px;
+        left: 0px;
+        padding: 9px 16px;
+    
     }
 
     /* set and collect */
@@ -239,6 +294,7 @@
         gap: 5px;
         margin-top: 20px;
     }
+
     /* inner info style */
 
 
@@ -257,13 +313,12 @@
     .setShashlikDiv,
     .fastFoodDiv,
     .cakeDiv,
-    .grillDiv
-    {
+    .grillDiv {
         position: relative;
         background-color: gray;
         width: 80px;
         height: 100px;
-        border-radius: 20px;
+        border-radius: 10px;
     }
 
 
@@ -287,45 +342,56 @@
     .cakeDivH1,
     .grillDivH1 {
         color: rgb(5, 5, 112);
-        font-size: 13px;
         margin-top: 5px;
-    }
-    .drinkDivH1{
-        font-size: 11px;
-    }   
 
-    .breadDivH1{
+    }
+
+    .drinkDivH1 {
+        font-size: 11px;
+        padding: 5px 5px;
+    }
+
+    .breadDivH1 {
         color: gold;
         font-size: 11px;
         margin-top: 5px;
         padding-top: 5px;
     }
+
     .saladDivH1 {
         color: gold;
         font-size: 11px;
         margin-top: 5px;
         padding-top: 5px;
     }
-    .kofeDivH1{
+
+    .kofeDivH1 {
         font-size: 11px;
     }
-    .natioanalFood1Div h1{
-        font-size: 12px;
-    }
-    .natioanalFood2Div h1{
-        font-size: 12px;
-        padding-top: 5px;
-    }
-    .UygurFoodDiv h1{
-        font-size: 12px;
-    }
-    .KomboFoodDiv{
-        font-size: 12px;
-    }
-    .KomboFoodDiv h1{
+
+    .natioanalFood1Div h1 {
         font-size: 12px;
     }
 
+    .natioanalFood2Div h1 {
+        font-size: 12px;
+        padding-top: 5px;
+    }
+
+    .UygurFoodDiv h1 {
+        font-size: 12px;
+    }
+
+
+    .KomboFoodDiv h1 {
+        font-size: 12px;
+    }
+    .setShashlikDivH1,
+    .fastFoodDivH1,
+    .cakeDivH1,
+    .grillDivH1{
+        font-size: 0.80rem;
+    }
     /* product h1 */
 
 
@@ -344,7 +410,7 @@
     /* product p */
 
     .drinkDiv p,
-    .breadDiv  p,
+    .breadDiv p,
     .saladDiv p,
     .kofeDiv p,
     .natioanalFood1Div p,
@@ -373,7 +439,7 @@
 
 
 
-    .quantitiControls{
+    .quantitiControls {
         display: flex;
         align-items: center;
         gap: 10px;
@@ -381,14 +447,14 @@
 
     }
 
-    .quantityControls button{
+    .quantityControls button {
         width: 30px;
         height: 30px;
         cursor: pointer;
         background-color: green;
         color: #FFF;
         border-radius: 50%;
-        
+
     }
 
 

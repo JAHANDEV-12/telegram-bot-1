@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Bot</title>
+    <link rel="stylesheet" href="bot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- setting need -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            text-transform: uppercase;
+            font-family: sans-serif;
+            background-color: #fff;
+
+        }
+
+        section {
+            position: relative;
+            max-width: 390px;
+            padding-top: 25px;
+            margin: auto;
+            background-image: url(img/menu_img.avif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            border-radius: 15px;
+            margin-top: 100px;
+
+        }
+
+        .menu_head {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 55px;
+
+        }
+
+        .menu_middle {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 55px;
+            margin-bottom: 75px;
+        }
+
+        .menu_foot {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-left: 5px;
+            padding-bottom: 70px;
+
+
+        }
+
+        .menu_h1 {
+            font-family: "Dancing Script", sans-serif;
+            margin-bottom: 25px;
+            font-size: 30px;
+            color: aliceblue;
+            font-weight: 900;
+        }
+
+        .basket_icons img {
+            position: absolute;
+            display: block;
+            width: 40px;
+            height: 40px;
+            top: 25px;
+            right: 10px;
+            cursor: pointer;
+            padding: 5px 5px;
+            background-color: white;
+            border-radius: 25px;
+        }
+
+        .cartQuantity {
+            position: absolute;
+            right: 45px;
+            top: 5px;
+            display: block;
+            background-color: green;
+            color: #fff;
+            border-radius: 15px;
+            padding: 15px 15px;
+            opacity: 0;
+            color: wheat;
+            margin-top: 20px;
+        }
+    </style>
+    <!-- setting need -->
+    <section>
+        <h1 class="menu_h1">Welcome   </h1>
+        <div class="basket_icons">
+            <span class="cartQuantity"></span>
+            <img class="basket_icons img" src="img/shopping-cart.png" alt="basket_icons" onclick="openCheck()">
+        </div>
+
+
+        <!-- menu head -->
+        <div class="menu_head">
+            <div class="drink" onclick="openDrink()">
+                <h1 class="drinkH1">suv </h1>
+            </div>
+            <div class="bread" onclick="openBread()">
+                <h1 class="breadH1"> Non/Choy</h1>
+            </div>
+            <div class="salad" onclick="openSalad()">
+                <h1 class="saladH1">Salad</h1>
+            </div>
+            <div class="kofe" onclick="openKofe()">
+                <h1 class="kofeH1">kofe</h1>
+            </div>
+
+
+            <!--  drin set  end-->
+            <div class="drinkCollect" id="drinkID">
+                <div class="drinkCollectInner">
+                    <div class="drinkDiv" data-name="pepsi 0.5L" data-price="7000">
+                        <h1 class="drinkDivH1">pepsi 0.5L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>7.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="pepsi 1L" data-price="11000">
+                        <h1 class="drinkDivH1">pepsi 1L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>11.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="pepsi 1.5L" data-price="15000">
+                        <h1 class="drinkDivH1">pepsi 1.5L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>15.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="butulichniy pepsi" data-price="4000">
+                        <h1 class="drinkDivH1">butulichniy pepsi</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>4.000so'm</p>
+                    </div>
+                </div>
+
+
+                <div class="drinkCollectInner">
+                    <div class="drinkDiv" data-name="fanta 0.5L" data-price="7000">
+                        <h1 class="drinkDivH1">fanta 0.5L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>7.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="fanta 1L" data-price="11000">
+                        <h1 class="drinkDivH1">fanta 1L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>11.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="fanta 1.5L" data-price="15000">
+                        <h1 class="drinkDivH1">fanta 1.5L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>15.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="butulichniy fanta" data-price="4000">
+                        <h1 class="drinkDivH1">butulichniy fanta</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>4.000so'm</p>
+                    </div>
+                </div>
+
+
+                <div class="drinkCollectInner">
+                    <div class="drinkDiv" data-name="coca-cola 0.5L" data-price="7000">
+                        <h1 class="drinkDivH1">coca-cola 0.5L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>7.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="coca-cola 1L" data-price="11000">
+                        <h1 class="drinkDivH1">coca-cola 1L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>11.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="coca-cola 1.5L" data-price="15000">
+                        <h1 class="drinkDivH1">coca-cola 1.5L</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>15.000so'm</p>
+                    </div>
+                    <div class="drinkDiv" data-name="butulichniy coca-cola" data-price="4000">
+                        <h1 class="drinkDivH1">butulichniy coca-cola</h1>
+                        <!-- <img src="img/pepsi img.jpg" alt="pepsi_img"> -->
+                        <p>4.000so'm</p>
+                    </div>
+                </div>
+            </div>
+            <!--  drink end-->
+
+
+            <!-- bread  collect start -->
+            <div class="breadCollect" id="breadCollectID">
+                <div class="breadCollectInner" id="breadCollectInnerID">
+                    <div class="breadDiv " data-name="Non(butun)" data-price="5000">
+                        <h1 class="breadDivH1">Non(butun)</h1>
+                        <p>5.000 so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                    <div class="breadDiv " data-name="Non(butun)" data-price="2500">
+                        <h1 class="breadDivH1">Non(yarim)</h1>
+                        <p>2.500 so 'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                    <div class="breadDiv " data-name="Non(butun)" data-price="3000">
+                        <h1 class="breadDivH1">Kulcha</h1>
+                        <p>3.000 so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                </div>
+
+
+                <div class="breadCollectInner" id="breadCollectInnerID">
+                    <div class="breadDiv " data-name="choy(ko'k)" data-price="2000">
+                        <h1 class="breadDivH1">choy(ko'k)</h1>
+                        <p>2.000 so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                    <div class="breadDiv " data-name="choy(qora)" data-price="2000">
+                        <h1 class="breadDivH1">choy(qora)</h1>
+                        <p>2.000so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                    <div class="breadDiv " data-name="malina choy" data-price="10000">
+                        <h1 class="breadDivH1">malina choy</h1>
+                        <p>10.000 so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                </div>
+
+
+                <div class="breadCollectInner" id="breadCollectInnerID">
+                    <div class="breadDiv " data-name=" limon choy(ko'k)" data-price="7000">
+                        <h1 class="breadDivH1">limon choy(ko'k)</h1>
+                        <p>7.000 so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                    <div class="breadDiv " data-name="limon choy(qora)" data-price="7000">
+                        <h1 class="breadDivH1">limon choy(qora)</h1>
+                        <p>7.000so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                    <div class="breadDiv " data-name="meva choy" data-price="10000">
+                        <h1 class="breadDivH1">meva choy</h1>
+                        <p>10.000 so'm</p>
+                        <!-- <img src="img/bread_image.jpg" alt="bread"> -->
+                    </div>
+                </div>
+            </div>
+            <!-- bread  collect end -->
+
+
+            <!-- salad start -->
+            <div class="saladCollect" id="saladCollectID">
+                <div class="saladCollectInner" id="saladCollectInnerID">
+                    <div class="saladDiv" data-name="Alivie" data-price="10000">
+                        <h1 class="saladDivH1">Alivie</h1>
+                        <!-- img -->
+                        <p>10.000so'm</p>
+                    </div>
+                    <div class="saladDiv" data-name="Blesk" data-price="11000">
+                        <h1 class="saladDivH1">Blesk</h1>
+                        <!-- img -->
+                        <p>11.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="Damskiy kapriz" data-price="15000">
+                        <h1 class="saladDivH1">Damskiy kapriz</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="Mujskoy kapriz" data-price="15000">
+                        <h1 class="saladDivH1">Mujskoy kapriz</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="saladCollectInner" id="saladCollectInnerID">
+                    <div class="saladDiv" data-name="lazat(mol) goshtli" data-price="15000">
+                        <h1 class="saladDivH1">lazat(mol) goshtli</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+                    </div>
+                    <div class="saladDiv" data-name="lazat(tovuq) goshtli" data-price="11000">
+                        <h1 class="saladDivH1">lazat(tovuq) goshtli</h1>
+                        <!-- img -->
+                        <p>11.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="maraqand salad" data-price="15000">
+                        <h1 class="saladDivH1">maraqand salad</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="izmir salad" data-price="15000">
+                        <h1 class="saladDivH1">izmir salad</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+
+                </div>
+                <div class="saladCollectInner" id="saladCollectInnerID">
+                    <div class="saladDiv" data-name="Alivie" data-price="10000">
+                        <h1 class="saladDivH1">Alivie</h1>
+                        <!-- img -->
+                        <p>10.000so'm</p>
+                    </div>
+                    <div class="saladDiv" data-name="Blesk" data-price="11000">
+                        <h1 class="saladDivH1">Blesk</h1>
+                        <!-- img -->
+                        <p>11.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="Damskiy kapriz" data-price="15000">
+                        <h1 class="saladDivH1">Damskiy kapriz</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="Mujskoy kapriz" data-price="15000">
+                        <h1 class="saladDivH1">Mujskoy kapriz</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+
+                </div>
+
+                <div class="saladCollectInner" id="saladCollectInnerID">
+                    <div class="saladDiv" data-name="Alivie" data-price="10000">
+                        <h1 class="saladDivH1">Alivie</h1>
+                        <!-- img -->
+                        <p>10.000so'm</p>
+                    </div>
+                    <div class="saladDiv" data-name="Blesk" data-price="11000">
+                        <h1 class="saladDivH1">Blesk</h1>
+                        <!-- img -->
+                        <p>11.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="Damskiy kapriz" data-price="15000">
+                        <h1 class="saladDivH1">Damskiy kapriz</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+                    <div class="saladDiv" data-name="Mujskoy kapriz" data-price="15000">
+                        <h1 class="saladDivH1">Mujskoy kapriz</h1>
+                        <!-- img -->
+                        <p>15.000so'm</p>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- salad end -->
+
+
+            <!-- kofe -->
+            <div class="kofeCollect" id="kofeID">
+                <div class="kofeCollectInner">
+                    <div class="kofeDiv" data-name="amerikano" data-price="8000">
+                        <h1 class="kofeDivH1">amerikano</h1>
+                        <p>8.000so'm</p>
+                    </div>
+                    <div class="kofeDiv" data-name=">amerikano sutli" data-price="10.000">
+                        <h1 class="kofeDivH1">amerikano sutli</h1>
+                        <p>10.000so'm</p>
+                    </div>
+                    <div class="kofeDiv" data-name="kapuchino" data-price="14000">
+                        <h1 class="kofeDivH1">kapuchino</h1>
+                        <p>14.000so'm</p>
+                    </div>
+                    <div class="kofeDiv" data-name="Kofe molochniy (3/1da)" data-price="6000">
+                        <h1 class="kofeDivH1">Kofe molochniy (3/1da)</h1>
+                        <p>6.000so'm</p>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <!-- kofe -->
+
+
+
+
+        </div>
+        <!-- Menu head end -->
+
+        <!-- menu middle start  -->
+        <div class="menu_middle">
+            <div class="natioanalFood1" id="nationalFood1ID" onclick="openNatioanalFood1()">
+                <h1 class="NationalFood1H1">
+                    Milliy taom <br>(Suyuq)
+                </h1>
+            </div>
+            <div class="natioanalFood2" id='nationalFood2ID' onclick="openNatioanalFood2()">
+                <h1 class="NationalFood2H1">
+                    Milliy taom <br>(Qoyiq)
+                </h1>
+            </div>
+            <div class="UygurFood" onclick="openUygurFood()">
+                <h1 class="UygurFoodH1">
+                    Uygur Food
+                </h1>
+            </div>
+            <div class="KomboFood" id="KomboID" onclick="openKomboFood()">
+                <h1 class="komboFoodH1">Shashlik monti Somsa</h1>
+            </div>
+
+
+            <div class="natioanalFood1Collect" id="NatioanalFood1ID">
+                <div class="natioanalFood1CollectInner">
+                    <div class="natioanalFood1Div" data-name="biqin shorva" data-price="28000">
+                        <h1> biqin <br> shorva</h1>
+                        <p>28.000 so'm</p>
+                    </div>
+                    <div class="natioanalFood1Div" data-name="boyin shorva" data-price="28000">
+                        <h1> boyin<br> shorva</h1>
+                        <p>28.000 so'm</p>
+                    </div>
+                    <div class="natioanalFood1Div" data-name="dolma shorva" data-price="25000">
+                        <h1> dolma <br> shorva</h1>
+                        <p>25.000 so'm</p>
+                    </div>
+                    <div class="natioanalFood1Div" data-name="koza shorva" data-price="26000">
+                        <h1> koza <br> shorva</h1>
+                        <p>26.000 so'm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="natioanalFood2Collect" id="NatioanalFood2ID">
+                <div class="natioanalFood2CollectInner">
+                    <div class="natioanalFood2Div" data-name="jiz biz" data-price="36000">
+                        <h1>jiz biz</h1>
+                        <p>36.000so'm</p>
+                    </div>
+                    <div class="natioanalFood2Div" data-name="achiq gosht" data-price="36000">
+                        <h1>achiq gosht</h1>
+                        <p>36.000so'm</p>
+                    </div>
+                    <div class="natioanalFood2Div" data-name="bifshteks" data-price="22000">
+                        <h1>bifshteks</h1>
+                        <p>22.000so'm</p>
+                    </div>
+                    <div class="natioanalFood2Div" data-name="qozon kabob" data-price="37000">
+                        <h1>qozon kabob</h1>
+                        <p>37.000so'm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="UygurFoodCollect" id="UygurFoodID">
+                <div class="UygurFoodCollectInner">
+                    <div class="UygurFoodDiv" data-name="tovuqsay" data-price="23000">
+                        <h1 class="UygurFoodDivH1">tovuqsay</h1>
+                        <p>23.000so'm</p>
+                    </div>
+                    <div class="UygurFoodDiv" data-name="goshtsay" data-price="31000">
+                        <h1 class="UygurFoodDivH1">goshtsay</h1>
+                        <p>32.000so'm</p>
+                    </div>
+                    <div class="UygurFoodDiv" data-name="sumboro" data-price="35000">
+                        <h1 class="UygurFoodDivH1">sumboro</h1>
+                        <p>35.000so'm</p>
+                    </div>
+                    <div class="UygurFoodDiv" data-name="siltama" data-price="32000">
+                        <h1 class="UygurFoodDivH1">siltama</h1>
+                        <p>32.000so'm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="KomboFoodCollect" id="KomboFoodID">
+                <div class="KomboFoodCollectInner">
+                    <div class="KomboFoodDiv" data-name="monti(goshtli)" data-price="3500">
+                        <h1>monti <br>(gosht)</h1>
+                        <p>3.500so'm</p>
+                    </div>
+                    <div class="KomboFoodDiv" data-name="monti(ko'k)" data-price="2000">
+                        <h1>monti <br>(ko'k)</h1>
+                        <p>2.000so'm</p>
+                    </div>
+                    <div class="KomboFoodDiv" data-name="monti(oshqovoq))" data-price="2000">
+                        <h1>monti <br>(oshqovoq)</h1>
+                        <p>2.000so'm</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <!-- menu middle end  -->
+
+        <!-- menu foot start -->
+        <div class="menu_foot">
+            <div class="setShashlik" onclick="openSetShashkik()">
+                <h1 class="setShashlikH1">set shashlik</h1>
+            </div>
+
+            <div class="fastFood" onclick="openFastFood()">
+                <h1 class="fastFoodH1"> Fast food</h1>
+            </div>
+            <div class="cake" onclick="openCake()">
+                <h1 class="cakeH1">desert</h1>
+            </div>
+            <div class="grill" onclick="openGrill()">
+                <h1 class="grillH1"> grill</h1>
+            </div>
+
+
+            <div class="setShashlikCollect" id="setShashlikID">
+                <div class="setShashlikCollectInner">
+                    <div class="setShashlikDiv" data-name="set shashlik(4 kishilik)" data-price="130000">
+                        <h1 class="setShashlikDivH1">set shashlik <br>
+                            (4 kishilik)</h1>
+                        <p>130.000so'm</p>
+                    </div>
+                    <div class="setShashlikDiv" data-name="set shashlik(6 kishilik)" data-price="160000">
+                        <h1 class="setShashlikDivH1">set shashlik <br>
+                            (6 kishilik)</h1>
+                        <p>170.000so'm</p>
+                    </div>
+                    <div class="setShashlikDiv" data-name="set shashlik( 8 kishilik)" data-price="185000">
+                        <h1 class="setShashlikDivH1">set shashlik <br>
+                            (8 kishilik)</h1>
+                        <p>185.000so'm</p>
+                    </div>
+                    <div class="setShashlikDiv" data-name="mix set" data-price="250000">
+                        <h1 class="setShashlikDivH1">Mix set</h1>
+                        <p>250.000so'm</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="fastFoodCollect" id="fastFoodID">
+                <div class="fastFoodCollectInner">
+                    <div class="fastFoodDiv" data-name="hot dog(obichniy)" data-price="10000">
+                        <h1 class="fastFoodDivH1">hot dog</h1>
+                        <p>10.000so'm</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="cakeCollect" id="cakeID">
+                <div class="cakeCollectInner">
+                    <div class="cakeDiv" data-name="Kapuchino" data-price="12000">
+                        <h1 class="cakeDivH1"> 12.000 so'm</h1>
+                        <p>Kapuchino</p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="grillCollect" id="grillID">
+                <div class="grillCollectInner">
+                    <div class="grillDiv" data-name="tandir grill" data-price="49000">
+                        <h1 class="grillDivH1"> 49.000so'm </h1>
+                        <p>tandir grill</p>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <button class="menuBack" id="menuBackID" onclick="back()">
+            Ortga
+        </button>
+
+        <!-- menu foot end -->
+
+
+
+
+
+
+
+    </section>
+    <!-- check start -->
+    <div class="check" id="check">
+        <h1>
+            Sizning checkingiz
+        </h1>
+
+        <div class="checkOut" id="checkOutID"></div>
+        <div class="checkTotal" id="checkTotalID">
+            Hammasi : <span id="totalID">0</span> so'm <br>
+        </div>
+
+        <div id="checkBoxContainer" style="display:none">
+            <label for="openBillConfirmTeg">Checkni tekshirdim </label>
+            <input type="checkbox" id="openOrderInfoID">
+            <!-- <div id="orderInfoID"><button id="sendToTelegram">Buyurtmani yuborish</button></div> -->
+        </div>
+        <div class="orderInfo" id="orderInfoID">
+            <h1 class="orderInfoH1">Malumotingizni kiriting</h1>
+            <input class="orderInfoInputNumber" type="text" placeholder="Raqamingizni kiriting"> <br>
+            <div class="orderInfoInputMapsWrapper">
+                <input class="orderInfoInputMaps" type="text" placeholder="Manzilingizni kiriting"><br>
+                <div class="locationItem">
+                    <div>POYTUG'</div>
+                    <div>TO'RTKOL</div>
+                    <div>QIZIL KO'PRIK</div>
+                    <div>KAMSAMOL</div>
+                    <div>JONOBOD</div>
+                </div>
+                <button class="sendData" onclick="sendToTelegram()">Buyurtma berish</button>
+            </div>
+        </div>
+    
+
+
+        <button class="back" onclick="checkBack()">
+            Menuga qaytish </button>
+    </div>
+    
+  
+
+
+
+
+
+
+    <style>
+
+    </style>
+
+    <!-- check style start -->
+    <style>
+        .check {
+            position: relative;
+            max-width: 390px;
+            height: 100%;
+            margin: auto;
+            border-radius: 15px;
+            background-color: rgb(179, 185, 190);
+            padding: 10px 10px;
+            line-height: 2;
+            opacity: 1;
+            margin-top: 100px;
+            display: none;
+        }
+
+        .orderInfo {
+            margin-top: 50px;
+            display: none;
+        }
+
+        .orderInfoInputMaps,
+        .orderInfoInputNumber {
+            width: 350px;
+            height: 40px;
+            margin-top: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .orderInfoInputLocation {
+            width: 300px;
+            height: 40px;
+            margin-top: 15px;
+            margin-left: 50px;
+            text-align: center;
+            text-transform: uppercase;
+
+        }
+
+
+        .orderInfoInputMapsWrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .locationItem {
+            position: absolute;
+            top: 100%;
+            width: 300px;
+            background: white;
+            border: 1px solid#111;
+            border-top: none;
+            z-index: 10;
+            display: none;
+        }
+
+        .locationItem div {
+            padding: 8px;
+            cursor: pointer;
+            border-top: 1px solid#111;
+            border-bottom: 1px solid#111;
+        }
+        .locationItem div:hover{
+            background-color: green;
+        }
+        .orderInfoInputMapsWrapper:hover .locationItem {
+            display: block;
+        }
+
+        .locationImg {
+            position: absolute;
+            margin-top: 70px;
+            left: 18px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+        .sendData{
+            width: 60%;
+            height: 35px;
+            font-size: 18px;
+            background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+
+        #totalID {
+            margin-bottom: 20px;
+
+        }
+
+        
+        .menuBack {
+            position: absolute;
+            bottom: 20px;
+            width: 60%;
+            height: 35px;
+            font-size: 18px;
+            background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+        .back{
+            width: 60%;
+            height: 35px;
+            font-size: 18px;
+            background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+
+        .menuBack {
+            position: sticky;
+            margin-bottom: 10px;
+            display: inline-block;
+            margin: 0 auto;
+            display: none;
+
+        }
+
+
+
+
+        .back {
+            margin-top: 40px;
+            text-transform: uppercase;
+            
+        }
+
+
+
+        .checkBTN {
+            display: none;
+        }
+
+
+
+        .quantity {
+            background-color: green;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .checkItem {
+            border-bottom: 1px solid#000;
+            padding: 8px 0;
+
+        }
+
+        .checkItem:nth-child(even) {
+            background-color: #ffffff75;
+        }
+
+
+        .active {
+            display: block;
+            opacity: 1;
+            transition: opacity ease 0.5s, transform 0.5s linear;
+            transform: scale(1);
+
+        }
+
+        .hidden {
+            display: none;
+            opacity: 0;
+            transition: opacity ease 0.5s, transform 0.5s linear;
+            transform: scale(0)
+        }
+    </style>
+    <!-- check style start -->
+
+    <script src="bot.js"></script>
+    <script src="check.js"></script>
+
+
+</body>
+
+
+
+
+
+<!-- </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bot.css">
+</head>
+<body>
+
+</body>
+</html> -->
+
+<!-- Пользователь нажимает кнопку.
+
+В Telegram внутри чата открывается твой сайт (как приложение).
+
+Сайт может получать данные пользователя, отправлять заказы в бот и т.д. -->
