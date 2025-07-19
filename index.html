@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Bot</title>
     <link rel="stylesheet" href="bot.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -24,7 +27,8 @@
             align-items: center;
             text-transform: uppercase;
             font-family: sans-serif;
-            background-color: aqua;
+            background-color: #fff;
+
         }
 
         section {
@@ -45,7 +49,7 @@
             display: flex;
             gap: 20px;
             justify-content: center;
-            margin-left: 10px;
+            margin-top: 55px;
 
         }
 
@@ -61,16 +65,18 @@
             display: flex;
             gap: 15px;
             justify-content: center;
-            margin-left: 10px;
-            margin-bottom: 75px;
+            margin-left: 5px;
+            padding-bottom: 70px;
+
 
         }
 
         .menu_h1 {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-family: "Dancing Script", sans-serif;
             margin-bottom: 25px;
-            font-size: 25px;
+            font-size: 30px;
             color: aliceblue;
+            font-weight: 900;
         }
 
         .basket_icons img {
@@ -102,8 +108,8 @@
     </style>
     <!-- setting need -->
     <section>
-        <h1 class="menu_h1">Welcome to Menu</h1>
-        <div class="basket_icons"> 
+        <h1 class="menu_h1">Welcome   </h1>
+        <div class="basket_icons">
             <span class="cartQuantity"></span>
             <img class="basket_icons img" src="img/shopping-cart.png" alt="basket_icons" onclick="openCheck()">
         </div>
@@ -112,7 +118,7 @@
         <!-- menu head -->
         <div class="menu_head">
             <div class="drink" onclick="openDrink()">
-                <h1 class="drinkH1">ichimliklar</h1>
+                <h1 class="drinkH1">suv </h1>
             </div>
             <div class="bread" onclick="openBread()">
                 <h1 class="breadH1"> Non/Choy</h1>
@@ -211,7 +217,7 @@
                     </div>
                     <div class="breadDiv " data-name="Non(butun)" data-price="2500">
                         <h1 class="breadDivH1">Non(yarim)</h1>
-                        <p>2.500so'm</p>
+                        <p>2.500 so 'm</p>
                         <!-- <img src="img/bread_image.jpg" alt="bread"> -->
                     </div>
                     <div class="breadDiv " data-name="Non(butun)" data-price="3000">
@@ -288,12 +294,7 @@
                         <p>15.000so'm</p>
 
                     </div>
-                    <div class="saladDiv" data-name="Yaponskiy" data-price="18000">
-                        <h1 class="saladDivH1">Yaponskiy</h1>
-                        <!-- img -->
-                        <p>18.000so'm</p>
 
-                    </div>
                 </div>
 
 
@@ -321,12 +322,7 @@
                         <p>15.000so'm</p>
 
                     </div>
-                    <div class="saladDiv" data-name="shampinion(qoziqorin)" data-price="18000">
-                        <h1 class="saladDivH1">shampinion <br> (qoziqorin)</h1>
-                        <!-- img -->
-                        <p>18.000so'm</p>
 
-                    </div>
                 </div>
                 <div class="saladCollectInner" id="saladCollectInnerID">
                     <div class="saladDiv" data-name="Alivie" data-price="10000">
@@ -352,12 +348,7 @@
                         <p>15.000so'm</p>
 
                     </div>
-                    <div class="saladDiv" data-name="Yaponskiy" data-price="18000">
-                        <h1 class="saladDivH1">Yaponskiy</h1>
-                        <!-- img -->
-                        <p>18.000so'm</p>
 
-                    </div>
                 </div>
 
                 <div class="saladCollectInner" id="saladCollectInnerID">
@@ -384,12 +375,7 @@
                         <p>15.000so'm</p>
 
                     </div>
-                    <div class="saladDiv" data-name="Yaponskiy" data-price="18000">
-                        <h1 class="saladDivH1">Yaponskiy</h1>
-                        <!-- img -->
-                        <p>18.000so'm</p>
 
-                    </div>
                 </div>
             </div>
             <!-- salad end -->
@@ -417,7 +403,7 @@
                 </div>
 
 
-                
+
 
             </div>
             <!-- kofe -->
@@ -446,11 +432,7 @@
                 </h1>
             </div>
             <div class="KomboFood" id="KomboID" onclick="openKomboFood()">
-                <h1 class="komboFoodH1">
-                    Shashlik, <br>
-                    monti,
-                    Somsa
-                </h1>
+                <h1 class="komboFoodH1">Shashlik monti Somsa</h1>
             </div>
 
 
@@ -546,7 +528,7 @@
                 <h1 class="fastFoodH1"> Fast food</h1>
             </div>
             <div class="cake" onclick="openCake()">
-                <h1 class="cakeH1">shirinliklar</h1>
+                <h1 class="cakeH1">desert</h1>
             </div>
             <div class="grill" onclick="openGrill()">
                 <h1 class="grillH1"> grill</h1>
@@ -610,7 +592,7 @@
 
 
         <button class="menuBack" id="menuBackID" onclick="back()">
-            Back(Menuga qaytish)
+            Ortga
         </button>
 
         <!-- menu foot end -->
@@ -627,41 +609,41 @@
         <h1>
             Sizning checkingiz
         </h1>
+
         <div class="checkOut" id="checkOutID"></div>
         <div class="checkTotal" id="checkTotalID">
             Hammasi : <span id="totalID">0</span> so'm <br>
-
-            <br>
-
-            <!-- confirm teg -->
-            <div id="checkBoxContainer" style="display:none">
-                <label for="openBillConfirmTeg">Checkni tekshirdim </label>
-                <input type="checkbox" id="openBillConfirmTegID">
-            </div>
-            <br>
-            <button id="billConfirmTeg" onclick="openBillRegistration()">Chekni rasmiylashtirish bolimiga o'tish</button>
-            <!-- confirm teg -->
-
         </div>
 
+        <div id="checkBoxContainer" style="display:none">
+            <label for="openBillConfirmTeg">Checkni tekshirdim </label>
+            <input type="checkbox" id="openOrderInfoID">
+            <!-- <div id="orderInfoID"><button id="sendToTelegram">Buyurtmani yuborish</button></div> -->
+        </div>
+        <div class="orderInfo" id="orderInfoID">
+            <h1 class="orderInfoH1">Malumotingizni kiriting</h1>
+            <input class="orderInfoInputNumber" type="text" placeholder="Raqamingizni kiriting"> <br>
+            <div class="orderInfoInputMapsWrapper">
+                <input class="orderInfoInputMaps" type="text" placeholder="Manzilingizni kiriting"><br>
+                <div class="locationItem">
+                    <div>POYTUG'</div>
+                    <div>TO'RTKOL</div>
+                    <div>QIZIL KO'PRIK</div>
+                    <div>KAMSAMOL</div>
+                    <div>JONOBOD</div>
+                </div>
+                <button class="sendData" onclick="sendToTelegram()">Buyurtma berish</button>
+            </div>
+        </div>
+    
+
+
         <button class="back" onclick="checkBack()">
-            < Back (Menuga qaytish) </button>
+            Menuga qaytish </button>
     </div>
+    
+  
 
-    <div class="billRegistration">
-        <h1 class="billRegistrationH1">Malumotlaringizni kiriting</h1>
-        <h2 class="billRegistrationH2" >Hurmatli mijoz </h2>
-        <h3 class="billRegistrationH3">  sizning malumotlaringiz faqatgina  buyurtmalaringizni  tez yetkazib berish uchun xizmat qiladi !!!  </h3>
-        <div class="inputDiv">
-            <input class="billRegistrationInput" type="tel" placeholder=" Raqamingizni kiriting " > <br>
-            <input class="billRegistrationInput" type="text" placeholder="Manzilingizni kiriting"> <br>
-            <input class="billRegistrationInput" type="text" placeholder="Locatsiyangizni kiriting" > <img  class="locationImg" src="img/placeholder.png" alt="location img">
-        </div> <br>
-
-        <a href="https://web.telegram.org/a/"><button id="billRegistrationBTN">Checkni rasmiylashtirish</button></a>
-        <button id="billRegistrationBTN" onclick="backMenu()">Bosh menuga qaytish</button>
-        <button id="billRegistrationBTN" onclick="backCheck()">Check bolimiga o'tish</button>
-    </div>
 
 
 
@@ -674,112 +656,140 @@
     <!-- check style start -->
     <style>
         .check {
-            width: 768px;
+            position: relative;
+            max-width: 390px;
             height: 100%;
             margin: auto;
             border-radius: 15px;
-            background-color: aliceblue;
+            background-color: rgb(179, 185, 190);
             padding: 10px 10px;
-            opacity: 0;
-            margin-top: 100px;
-        }
-        .billRegistration{
-            width: 768px;
-            height: 100%;
-            margin: auto;
-            border-radius: 15px;
-            background-color: aliceblue;
-            padding: 10px 10px;
+            line-height: 2;
             opacity: 1;
             margin-top: 100px;
             display: none;
         }
-        .inputDiv{
-            display: inline-block;            
+
+        .orderInfo {
+            margin-top: 50px;
+            display: none;
         }
-        .billRegistrationInput:nth-child(1){
-            margin-top: 20px;
-        }
-        .billRegistrationInput{
-            margin-bottom: 20px;
-            padding: 10px 10px;
-            width: 460px;
+
+        .orderInfoInputMaps,
+        .orderInfoInputNumber {
+            width: 350px;
             height: 40px;
-        }
-        
-        
-        #billRegistrationBTN{
-            width: 80%;
-            height: 20px;
-            background-color: red;
-            display: inline-block;
-            cursor: pointer;
-            margin-top: 10px;
-            border-radius: 15px;
+            margin-top: 15px;
+            text-align: center;
             text-transform: uppercase;
         }
-        .billRegistrationH1{
-            font-size: 27px;
-            font-style: italic;
+
+        .orderInfoInputLocation {
+            width: 300px;
+            height: 40px;
+            margin-top: 15px;
+            margin-left: 50px;
+            text-align: center;
+            text-transform: uppercase;
+
         }
-        .billRegistrationH2{
-            font-size: 25px;
-            margin-top: 5px;
-            margin-bottom: 5px;
+
+
+        .orderInfoInputMapsWrapper {
+            position: relative;
+            display: inline-block;
         }
-        .billRegistrationH3{
-            font-size: 18px;
-            line-height: 2;
-        }
-        .locationImg{
+
+        .locationItem {
             position: absolute;
+            top: 100%;
+            width: 300px;
+            background: white;
+            border: 1px solid#111;
+            border-top: none;
+            z-index: 10;
+            display: none;
+        }
+
+        .locationItem div {
+            padding: 8px;
+            cursor: pointer;
+            border-top: 1px solid#111;
+            border-bottom: 1px solid#111;
+        }
+        .locationItem div:hover{
+            background-color: green;
+        }
+        .orderInfoInputMapsWrapper:hover .locationItem {
+            display: block;
+        }
+
+        .locationImg {
+            position: absolute;
+            margin-top: 70px;
+            left: 18px;
             width: 40px;
             height: 40px;
             cursor: pointer;
-            
-
         }
-        #totalID {
-            margin-bottom: 20px;
-        }
-
-        .back,
-        .menuBack {
-            width: 80%;
-            height: 20px;
-            background-color: red;
+        .sendData{
+            width: 60%;
+            height: 35px;
+            font-size: 18px;
+            background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
             display: inline-block;
             cursor: pointer;
             margin-top: 10px;
-            border-radius: 15px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+
+        #totalID {
+            margin-bottom: 20px;
+
+        }
+
+        
+        .menuBack {
+            position: absolute;
+            bottom: 20px;
+            width: 60%;
+            height: 35px;
+            font-size: 18px;
+            background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
+            text-transform: uppercase;
+        }
+        .back{
+            width: 60%;
+            height: 35px;
+            font-size: 18px;
+            background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
+            display: inline-block;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 10px;
             text-transform: uppercase;
         }
 
         .menuBack {
             position: sticky;
-            bottom: 10px;
+            margin-bottom: 10px;
             display: inline-block;
             margin: 0 auto;
             display: none;
+
         }
 
-        #billConfirmTeg {
-            width: 80%;
-            height: 20px;
-            margin: 0 auto;
-            background-color: red;
-            display: inline-block;
-            cursor: pointer;
-            margin-top: 10px;
-            border-radius: 15px;
-            text-transform: uppercase;
-            display: none;
-        }
+
 
 
         .back {
             margin-top: 40px;
             text-transform: uppercase;
+            
         }
 
 
@@ -788,7 +798,7 @@
             display: none;
         }
 
-      
+
 
         .quantity {
             background-color: green;
@@ -834,7 +844,7 @@
 
 
 
- 
+
 <!-- </html>
 <!DOCTYPE html>
 <html lang="en">
