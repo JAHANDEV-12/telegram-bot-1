@@ -984,10 +984,6 @@ checkbox.addEventListener('click', function () {
         billConfirmTeg.style.display = 'none'
     }
 })
-
-
-
-
 // === MANZIL TANLASH DROPDOWN ===
 const input = document.querySelector('.orderInfoInputMaps');
 const locationList = document.querySelector('.locationItem');
@@ -1008,10 +1004,16 @@ document.addEventListener('click', e => {
   }
 });
 
-// === YUBORISH FUNKSIYASI ===
+// === BUYURTMA YUBORISH FUNKSIYASI ===
 function sendToTelegram() {
+  // ❌ 2-marta yuborishni oldini olish
+  if (localStorage.getItem("orderSent") === "true") {
+    alert("❗ Siz buyurtma yuborib bo‘lgansiz.");
+    return;
+  }
+
   const phone = document.querySelector('.orderInfoInputNumber').value.trim();
-  const address = input.value.trim();
+  const address = input.value.trim();  // ✅ Manzil dropdowndan olinadi
   const total = document.getElementById('totalID').textContent.trim();
 
   const checkItems = document.querySelectorAll('.checkItem');
@@ -1056,14 +1058,15 @@ ${products.join('\n')}
       .then(res => {
         if (res.ok) {
           alert("✅ Buyurtma muvaffaqiyatli yuborildi!");
-          tg.close();  // Web appni yopadi
+          localStorage.setItem("orderSent", "true"); // 🔐 Bir marta yozildi
+          tg.close();
         } else {
           alert("❌ Yuborishda xatolik yuz berdi!");
         }
       })
       .catch(err => {
         console.error(err);
-        alert("❗ Internetga ulanmagan ko‘rinadi!");
+        alert("❗ Internetga ulanmagan bo‘lishi mumkin!");
       });
   } else {
     alert("❗ Bu sahifa Telegram ichida ochilmagan.");
