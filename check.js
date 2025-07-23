@@ -1072,7 +1072,7 @@ ${products.join('\n')}
         // ✅ Web ilovani yopish
         setTimeout(() => {
           tg.close();
-        }, 500);
+        }, 100);
       } else {
         alert("❌ Yuborishda xatolik yuz berdi!");
       }
