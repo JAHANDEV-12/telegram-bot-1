@@ -1077,11 +1077,4 @@ ${products.join('\n')}
         alert("❌ Yuborishda xatolik yuz berdi!");
       }
     })
-    .catch(err => {
-      console.error(err);
-      alert("❗ Internetga ulanmagan ko‘rinadi!");
-    });
-  } else {
-    alert("❗ Bu sahifa Telegram ichida ochilmagan.");
-  }
-}
+    
