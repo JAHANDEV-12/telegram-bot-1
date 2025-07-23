@@ -984,6 +984,14 @@ checkbox.addEventListener('click', function () {
         billConfirmTeg.style.display = 'none'
     }
 })
+
+
+
+
+
+
+
+
 // === MANZIL TANLASH DROPDOWN ===
 const input = document.querySelector('.orderInfoInputMaps');
 const locationList = document.querySelector('.locationItem');
@@ -1004,16 +1012,16 @@ document.addEventListener('click', e => {
   }
 });
 
-// === BUYURTMA YUBORISH FUNKSIYASI ===
+// === BUYURTMA YUBORISH (FAQAT BIR MARTA) ===
 function sendToTelegram() {
-  // ❌ 2-marta yuborishni oldini olish
+  // ✅ Faqat 1 marta yuborishga tekshiruv
   if (localStorage.getItem("orderSent") === "true") {
-    alert("❗ Siz buyurtma yuborib bo‘lgansiz.");
+    alert("❗ Siz buyurtmani allaqachon yuborgansiz.");
     return;
   }
 
   const phone = document.querySelector('.orderInfoInputNumber').value.trim();
-  const address = input.value.trim();  // ✅ Manzil dropdowndan olinadi
+  const address = input.value.trim();
   const total = document.getElementById('totalID').textContent.trim();
 
   const checkItems = document.querySelectorAll('.checkItem');
@@ -1041,8 +1049,9 @@ ${products.join('\n')}
   if (window.Telegram && Telegram.WebApp) {
     const tg = Telegram.WebApp;
     const chat_id = tg.initDataUnsafe?.user?.id;
+
     if (!chat_id) {
-      alert("❗ Telegram foydalanuvchi aniqlanmadi.");
+      alert("❗ Telegram foydalanuvchisi aniqlanmadi.");
       return;
     }
 
@@ -1055,19 +1064,23 @@ ${products.join('\n')}
         parse_mode: "Markdown"
       })
     })
-      .then(res => {
-        if (res.ok) {
-          alert("✅ Buyurtma muvaffaqiyatli yuborildi!");
-          localStorage.setItem("orderSent", "true"); // 🔐 Bir marta yozildi
+    .then(res => {
+      if (res.ok) {
+        alert("✅ Buyurtma muvaffaqiyatli yuborildi!");
+        localStorage.setItem("orderSent", "true"); // 🔐 Belgilab qo‘yish
+
+        // ✅ Web ilovani yopish
+        setTimeout(() => {
           tg.close();
-        } else {
-          alert("❌ Yuborishda xatolik yuz berdi!");
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("❗ Internetga ulanmagan bo‘lishi mumkin!");
-      });
+        }, 500);
+      } else {
+        alert("❌ Yuborishda xatolik yuz berdi!");
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("❗ Internetga ulanmagan ko‘rinadi!");
+    });
   } else {
     alert("❗ Bu sahifa Telegram ichida ochilmagan.");
   }
