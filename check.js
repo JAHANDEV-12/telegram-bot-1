@@ -986,94 +986,70 @@ checkbox.addEventListener('click', function () {
 })
 
 
-// === MANZIL TANLASH (DROPDOWN ISHLASHI) ===
-const input = document.querySelector('.orderInfoInputMaps');
-const locationList = document.querySelector('.locationItem');
-const options = locationList.querySelectorAll('div');
-
-// Inputga bosilganda ro‘yxat ochiladi
-input.addEventListener('focus', () => {
-  locationList.style.display = 'block';
-});
-
-// Variant tanlanganda inputga yoziladi va yopiladi
-options.forEach(option => {
-  option.addEventListener('click', () => {
-    input.value = option.textContent;
-    locationList.style.display = 'none';
-  });
-});
-
-// Tashqariga bosilganda yopiladi
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.orderInfoInputMapsWrapper')) {
-    locationList.style.display = 'none';
-  }
-});
-
-// === TELEGRAMGA YUBORISH FUNKSIYASI ===
 function sendToTelegram() {
-  const phone = document.querySelector('.orderInfoInputNumber').value.trim();
-  const address = document.querySelector('.orderInfoInputMaps').value.trim();
-  const total = document.getElementById('totalID').textContent.trim();
+    const phone = document.querySelector('.orderInfoInputNumber').value.trim();
+    const address = document.querySelector('.orderInfoInputMaps').value.trim();
+    const total = document.getElementById('totalID').textContent.trim();
 
-  // 🧺 Maxsulotlarni olish (nomi va miqdori bilan)
-  const checkItems = document.querySelectorAll('.checkItem');
-  let products = [];
+    const checkItems = document.querySelectorAll('.checkItem');
+    let products = [];
 
-  checkItems.forEach(item => {
-    const name = item.getAttribute('data-name'); // Mahsulot nomi
-    const quantity = item.querySelector('.quantity')?.textContent.trim(); // Mahsulot soni
-    if (name && quantity) {
-      products.push(`• ${name} x${quantity}`);
+    checkItems.forEach(item => {
+      const name = item.getAttribute('data-name');
+      const quantity = item.querySelector('.quantity')?.textContent.trim();
+      if (name && quantity) {
+        products.push(`• ${name} x${quantity}`);
+      }
+    });
+
+    if (!phone || !address || !total || products.length === 0) {
+      alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
+      return;
     }
-  });
 
-  // ❗ Tekshiruvlar
-  if (!phone || !address || !total || products.length === 0) {
-    alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
-    return;
-  }
+    const message = `
+🧾 *Sizning buyurtmangiz:*
 
-  // 📝 Maxsulotlar qatorlab yoziladi
-  const productList = products.join('\n');
+${products.join('\n')}
 
-  // 📩 Telegramga yuboriladigan xabar
-  const message = `
-🧾 *Yangi Buyurtma:*
-
-🛍 *Maxsulotlar:*
-${productList}
-
-📞 *Raqam:* ${phone}
+📞 *Telefon:* ${phone}
 📍 *Manzil:* ${address}
 💰 *Umumiy summa:* ${total} so'm
 `;
 
-  // === Telegramga yuborish
-  const token = "7929962047:AAG3Ku-NlryaBhnIJ3A_zzHqj5rle1tq-as";
-  const chat_id = "-4736546123";
+    const tg = window.Telegram.WebApp;
+    const user_chat_id = tg.initDataUnsafe?.user?.id;
 
-  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chat_id: chat_id,
-      text: message,
-      parse_mode: "Markdown"
-    })
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("✅ Buyurtma Telegramga yuborildi!");
-    } else {
-      alert("❌ Xatolik yuz berdi!");
+    if (!user_chat_id) {
+      alert("❗ Telegram foydalanuvchi aniqlanmadi.");
+      return;
     }
-  })
-  .catch(error => {
-    console.error("Xatolik:", error);
-    alert("❗ Yuborishda muammo bo‘ldi!");
-  });
-}
+
+    const botToken = "7929962047:AAG3Ku-NlryaBhnIJ3A_zzHqj5rle1tq-as";
+    const apiURL = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+    fetch(apiURL, {
+        
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        chat_id: user_chat_id,
+        text: message,
+        parse_mode: "Markdown"
+      })
+    })
+    .then(res => {
+      if (res.ok) {
+        alert("✅ Buyurtma yuborildi!");
+        tg.close(); // Web ilovani yopadi
+      } else {
+        alert("❌ Yuborishda xatolik.");
+      }
+    })
+    .catch(err => {
+      console.error("Xatolik:", err);
+      alert("❗ Tarmoqqa ulanishda muammo.");
+    });
+  }
