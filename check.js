@@ -985,29 +985,28 @@ checkbox.addEventListener('click', function () {
     }
 })
 
-
 function sendToTelegram() {
-    const phone = document.querySelector('.orderInfoInputNumber').value.trim();
-    const address = document.querySelector('.orderInfoInputMaps').value.trim();
-    const total = document.getElementById('totalID').textContent.trim();
+  const phone = document.querySelector('.orderInfoInputNumber').value.trim();
+  const address = document.querySelector('.orderInfoInputMaps').value.trim();
+  const total = document.getElementById('totalID').textContent.trim();
 
-    const checkItems = document.querySelectorAll('.checkItem');
-    let products = [];
+  const checkItems = document.querySelectorAll('.checkItem');
+  let products = [];
 
-    checkItems.forEach(item => {
-      const name = item.getAttribute('data-name');
-      const quantity = item.querySelector('.quantity')?.textContent.trim();
-      if (name && quantity) {
-        products.push(`• ${name} x${quantity}`);
-      }
-    });
-
-    if (!phone || !address || !total || products.length === 0) {
-      alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
-      return;
+  checkItems.forEach(item => {
+    const name = item.getAttribute('data-name');
+    const quantity = item.querySelector('.quantity')?.textContent.trim();
+    if (name && quantity) {
+      products.push(`• ${name} x${quantity}`);
     }
+  });
 
-    const message = `
+  if (!phone || !address || !total || products.length === 0) {
+    alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
+    return;
+  }
+
+  const message = `
 🧾 *Sizning buyurtmangiz:*
 
 ${products.join('\n')}
@@ -1017,7 +1016,9 @@ ${products.join('\n')}
 💰 *Umumiy summa:* ${total} so'm
 `;
 
-    const tg = window.Telegram.WebApp;
+  // Faqat agar Telegram WebApp mavjud bo‘lsa
+  if (window.Telegram && Telegram.WebApp) {
+    const tg = Telegram.WebApp;
     const user_chat_id = tg.initDataUnsafe?.user?.id;
 
     if (!user_chat_id) {
@@ -1029,11 +1030,8 @@ ${products.join('\n')}
     const apiURL = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
     fetch(apiURL, {
-        
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: user_chat_id,
         text: message,
@@ -1043,7 +1041,7 @@ ${products.join('\n')}
     .then(res => {
       if (res.ok) {
         alert("✅ Buyurtma yuborildi!");
-        tg.close(); // Web ilovani yopadi
+        tg.close(); // Web ilovani yopish
       } else {
         alert("❌ Yuborishda xatolik.");
       }
@@ -1052,4 +1050,8 @@ ${products.join('\n')}
       console.error("Xatolik:", err);
       alert("❗ Tarmoqqa ulanishda muammo.");
     });
+
+  } else {
+    alert("❗ Bu sahifa Telegram WebApp orqali ochilmagan.");
   }
+}
