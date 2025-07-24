@@ -1017,40 +1017,35 @@ function sendToTelegram() {
   const address = document.querySelector('.orderInfoInputMaps').value.trim();
   const total = document.getElementById('totalID').textContent.trim();
 
-  // 🧺 Maxsulotlarni olish (nomi va miqdori bilan)
   const checkItems = document.querySelectorAll('.checkItem');
   let products = [];
 
   checkItems.forEach(item => {
-    const name = item.getAttribute('data-name'); // Mahsulot nomi
-    const quantity = item.querySelector('.quantity')?.textContent.trim(); // Mahsulot soni
+    const name = item.getAttribute('data-name');
+    const quantity = item.querySelector('.quantity')?.textContent.trim();
     if (name && quantity) {
       products.push(`• ${name} x${quantity}`);
     }
   });
 
-  // ❗ Tekshiruvlar
+  // ❗ Tekshiruv
   if (!phone || !address || !total || products.length === 0) {
     alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
     return;
   }
 
-  // 📝 Maxsulotlar qatorlab yoziladi
-  const productList = products.join('\n');
-
-  // 📩 Telegramga yuboriladigan xabar
   const message = `
 🧾 *Yangi Buyurtma:*
 
 🛍 *Maxsulotlar:*
-${productList}
+${products.join('\n')}
 
 📞 *Raqam:* ${phone}
 📍 *Manzil:* ${address}
 💰 *Umumiy summa:* ${total} so'm
 `;
 
-  // === Telegramga yuborish
+  // Telegram token va chat ID
   const token = "7929962047:AAG3Ku-NlryaBhnIJ3A_zzHqj5rle1tq-as";
   const chat_id = "-4736546123";
 
@@ -1067,7 +1062,14 @@ ${productList}
   })
   .then(response => {
     if (response.ok) {
-      alert("✅ Buyurtma Telegramga yuborildi!");
+      alert("✅ Buyurtma yuborildi!");
+
+      // Web ilovani 500ms dan so‘ng yopish
+      if (window.Telegram && Telegram.WebApp) {
+        setTimeout(() => {
+          Telegram.WebApp.close(); // Web ilovani yopish
+        }, 500);
+      }
     } else {
       alert("❌ Xatolik yuz berdi!");
     }
