@@ -986,16 +986,23 @@ checkbox.addEventListener('click', function () {
 })
 
 
+// ⚠️ Telegram WebApp mavjudligini tekshiramiz
+if (window.Telegram && Telegram.WebApp) {
+  const tg = window.Telegram.WebApp;
+  tg.expand();
+} else {
+  alert("❗ Iltimos, sahifani Telegram ilovasi orqali oching.");
+}
+
+// 💡 Mahsulotlar ro‘yxatini ko‘rsatish (dropdown manzil)
 const input = document.querySelector('.orderInfoInputMaps');
 const locationList = document.querySelector('.locationItem');
 const options = locationList.querySelectorAll('div');
 
-// Input bosilganda ro‘yxat chiqadi
 input.addEventListener('focus', () => {
   locationList.style.display = 'block';
 });
 
-// Variant tanlanganda inputga yoziladi va yopiladi
 options.forEach(option => {
   option.addEventListener('click', () => {
     input.value = option.textContent;
@@ -1003,14 +1010,51 @@ options.forEach(option => {
   });
 });
 
-// Tashqariga bosilganda yopiladi
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.orderInfoInputMapsWrapper')) {
     locationList.style.display = 'none';
   }
 });
 
-let alreadySent = false; // Takror yuborishni bloklash uchun
+// 📦 Mahsulot tanlash (cart logika)
+const cartItems = document.querySelector(".cartItems");
+const orderTotal = document.querySelector(".orderTotal");
+const orderBtn = document.querySelector(".orderBtn");
+const orderConfirmText = document.querySelector(".orderConfirmText");
+
+let cart = [];
+let total = 0;
+let sent = false;
+
+function addToCart(productName, productPrice) {
+  const existingItem = cart.find(item => item.name === productName);
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    cart.push({ name: productName, price: productPrice, quantity: 1 });
+  }
+  updateCartUI();
+}
+
+function updateCartUI() {
+  cartItems.innerHTML = "";
+  total = 0;
+  cart.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("cart-item");
+    itemDiv.innerHTML = `
+      <span>${item.name} x${item.quantity}</span>
+      <span>${itemTotal} so'm</span>
+    `;
+    cartItems.appendChild(itemDiv);
+  });
+  orderTotal.innerText = total + " so'm";
+}
+
+// ✅ Buyurtmani yuborish Telegram botga
+let alreadySent = false;
 
 function sendToTelegram() {
   if (alreadySent) {
@@ -1049,7 +1093,6 @@ ${products.join('\n')}
 💰 *Umumiy summa:* ${total} so'm
   `;
 
-  // Telegram WebApp foydalanuvchi ID sini olish
   const tg = window.Telegram.WebApp;
   const userId = tg.initDataUnsafe?.user?.id;
 
@@ -1058,7 +1101,6 @@ ${products.join('\n')}
     return;
   }
 
-  // API orqali foydalanuvchining o‘ziga yuboriladi
   fetch(`https://api.telegram.org/bot7929962047:AAG3Ku-NlryaBhnIJ3A_zzHqj5rle1tq-as/sendMessage`, {
     method: "POST",
     headers: {
@@ -1083,3 +1125,29 @@ ${products.join('\n')}
     alert("❗ Yuborishda muammo bo‘ldi!");
   });
 }
+
+// ▶️ Telegram WebApp orqali ma'lumot yuborish (sendData)
+orderBtn.addEventListener("click", () => {
+  if (cart.length === 0) {
+    alert("Iltimos, mahsulot tanlang.");
+    return;
+  }
+
+  if (sent) {
+    alert("Siz allaqachon buyurtma yubordingiz.");
+    return;
+  }
+
+  const data = {
+    cart: cart,
+    total: total
+  };
+
+  window.Telegram.WebApp.sendData(JSON.stringify(data));
+
+  sent = true;
+  orderConfirmText.style.display = "block";
+  orderBtn.innerText = "✅ Yuborildi";
+  orderBtn.disabled = true;
+});
+
