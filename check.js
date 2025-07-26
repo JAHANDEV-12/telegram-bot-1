@@ -985,15 +985,18 @@ checkbox.addEventListener('click', function () {
     }
 })
 
+
 // === MANZIL TANLASH (DROPDOWN ISHLASHI) ===
 const input = document.querySelector('.orderInfoInputMaps');
 const locationList = document.querySelector('.locationItem');
 const options = locationList.querySelectorAll('div');
 
+// Inputga bosilganda ro‘yxat ochiladi
 input.addEventListener('focus', () => {
   locationList.style.display = 'block';
 });
 
+// Variant tanlanganda inputga yoziladi va yopiladi
 options.forEach(option => {
   option.addEventListener('click', () => {
     input.value = option.textContent;
@@ -1001,6 +1004,7 @@ options.forEach(option => {
   });
 });
 
+// Tashqariga bosilganda yopiladi
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.orderInfoInputMapsWrapper')) {
     locationList.style.display = 'none';
@@ -1013,24 +1017,28 @@ function sendToTelegram() {
   const address = document.querySelector('.orderInfoInputMaps').value.trim();
   const total = document.getElementById('totalID').textContent.trim();
 
+  // 🧺 Maxsulotlarni olish (nomi va miqdori bilan)
   const checkItems = document.querySelectorAll('.checkItem');
   let products = [];
 
   checkItems.forEach(item => {
-    const name = item.getAttribute('data-name');
-    const quantity = item.querySelector('.quantity')?.textContent.trim();
+    const name = item.getAttribute('data-name'); // Mahsulot nomi
+    const quantity = item.querySelector('.quantity')?.textContent.trim(); // Mahsulot soni
     if (name && quantity) {
       products.push(`• ${name} x${quantity}`);
     }
   });
 
+  // ❗ Tekshiruvlar
   if (!phone || !address || !total || products.length === 0) {
     alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
     return;
   }
 
+  // 📝 Maxsulotlar qatorlab yoziladi
   const productList = products.join('\n');
 
+  // 📩 Telegramga yuboriladigan xabar
   const message = `
 🧾 *Sizning Buyurtmangiz:*
 
@@ -1042,15 +1050,9 @@ ${productList}
 💰 *Umumiy summa:* ${total} so'm
 `;
 
-  // === Telegram WebApp orqali foydalanuvchi ID ni olish ===
-  const telegramUser = window.Telegram.WebApp.initDataUnsafe?.user;
-  if (!telegramUser || !telegramUser.id) {
-    alert("❗ Foydalanuvchi ma'lumotlari olinmadi.");
-    return;
-  }
-
-  const chat_id = telegramUser.id; // Foydalanuvchining Telegram ID
+  // === Telegramga yuborish
   const token = "7929962047:AAG3Ku-NlryaBhnIJ3A_zzHqj5rle1tq-as";
+  const chat_id = "5017017778";
 
   fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
     method: "POST",
@@ -1066,7 +1068,6 @@ ${productList}
   .then(response => {
     if (response.ok) {
       alert("✅ Buyurtma Telegramga yuborildi!");
-      window.Telegram.WebApp.close(); // Ilovani avtomatik yopish
     } else {
       alert("❌ Xatolik yuz berdi!");
     }
