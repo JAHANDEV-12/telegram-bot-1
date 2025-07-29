@@ -1009,13 +1009,15 @@ options.forEach(option => {
 });
 
 
-let webOyna  = window.Telegram.WebApp 
+let webOyna = window.Telegram.WebApp;
 
-webOyna.expend();
+webOyna.expand(); // <- noto‘g‘ri yozilgan bo‘lgan, to‘g‘risi 'expand'
 
-sendDataButton.addEventListener('clcik',()=>{
-  webOyna.close();
-})
+const sendDataButton = document.querySelector('.sendData'); // tugmani olish
+
+sendDataButton.addEventListener('click', () => {
+  webOyna.close(); // Telegram WebApp oynasini yopadi
+});
 
 
 
