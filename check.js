@@ -988,37 +988,35 @@ checkbox.addEventListener('click', function () {
 
 
 //  malumot yuborish 
+    
+//  malumot yuborish 
 let webOyna = window.Telegram.WebApp
 webOyna.expand();
 
 // === MANZIL TANLASH (DROPDOWN ISHLASHI) ===
-document.addEventListener("DOMContentLoaded", () => {
-    let webOyna = window.Telegram.WebApp;
-    webOyna.expand();
+const input = document.querySelector('.orderInfoInputMaps');
+const locationList = document.querySelector('.locationItem');
+const options = locationList.querySelectorAll('div');
 
-    const input = document.querySelector('.orderInfoInputMaps');
-    const locationList = document.querySelector('.locationItem');
+// Inputga bosilganda ro‘yxat ochiladi
+input.addEventListener('focus', () => {
+  locationList.style.display = 'block';
+});
 
-    // Inputga bosilganda ochiladi
-    input.addEventListener('focus', () => {
-      locationList.style.display = 'block';
-    });
-
-    // Variant tanlanadi
-    locationList.addEventListener('click', (e) => {
-      if (e.target.tagName === 'DIV') {
-        input.value = e.target.textContent;
-        locationList.style.display = 'none';
-      }
-    });
-
-    // Tashqariga bosilganda yopiladi
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.orderInfoInputMapsWrapper')) {
-        locationList.style.display = 'none';
-      }
-    });
+// Variant tanlanganda inputga yoziladi va yopiladi
+options.forEach(option => {
+  option.addEventListener('click', () => {
+    input.value = option.textContent;
+    locationList.style.display = 'none';
   });
+});
+
+// Tashqariga bosilganda yopiladi
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.orderInfoInputMapsWrapper')) {
+    locationList.style.display = 'none';
+  }
+});
 
   // Yuborish funksiyasi
   function sendToTelegram() {
