@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
-
+<script src="https://telegram.org/js/telegram-web-app.js?58"></script>
 <body>
     <!-- setting need -->
 
@@ -29,7 +29,6 @@
             font-family: sans-serif;
             background-color: #fff;
             padding-bottom: 300px;
-
 
         }
 
@@ -107,6 +106,15 @@
             color: wheat;
             margin-top: 20px;
         }
+
+        .menu_head {
+            opacity: 0;
+            transition: all 0.3s ease;
+          }
+          .menu_head.visible {
+            opacity: 1;
+          }
+          
     </style>
     <!-- setting need -->
     <section>
@@ -634,10 +642,10 @@
                     <div>KAMSAMOL</div>
                     <div>JONOBOD</div>
                 </div>
-                <button class="sendData" onclick="sendToTelegram()">Buyurtma berish</button>
+                
             </div>
         </div>
-    
+        <button id="sendData"  style="display: none;">check botga <br> yuborish</button>
 
 
         <button class="back" onclick="checkBack()">
@@ -651,9 +659,7 @@
 
 
 
-    <style>
 
-    </style>
 
     <!-- check style start -->
     <style>
@@ -726,6 +732,7 @@
             display: block;
         }
 
+        
         .locationImg {
             position: absolute;
             margin-top: 70px;
@@ -734,14 +741,14 @@
             height: 40px;
             cursor: pointer;
         }
-        .sendData{
+        #sendData{
             width: 60%;
-            height: 35px;
+            height: 55px;
             font-size: 18px;
             background: radial-gradient(circle, rgba(12, 84, 110, 1) 0%, rgba(87, 199, 195, 1) 50%, rgba(12, 84, 110, 1) 100%);
-            display: inline-block;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 40px;
+            margin-left: 75px;
             border-radius: 10px;
             text-transform: uppercase;
         }
@@ -841,7 +848,6 @@
     <script src="bot.js"></script>
     <script src="check.js"></script>
     <script src="sendData.js"></script>
-
 
 
 </body>
