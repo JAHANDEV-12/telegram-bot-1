@@ -972,16 +972,20 @@ grillDivProduct.forEach(grillDiv => {
 const checkbox = document.getElementById('openOrderInfoID')
 const billConfirmTeg = document.getElementById('orderInfoID')
 const check  = document.getElementById('check')
+const sendDataButton = document.getElementById('sendData')  
+
 
 checkbox.addEventListener('click', function () {
     if (checkbox.checked) {
         billConfirmTeg.style.display = 'block'
-        
-        
+        sendData.style.display = 'block'
+    
     }
 
     else {
         billConfirmTeg.style.display = 'none'
+        sendData.style.display = 'none'
+
     }
 })
 
@@ -992,7 +996,7 @@ const locationList = document.querySelector('.locationItem');
 const options = locationList.querySelectorAll('div');
 
 // Inputga bosilganda ro‘yxat ochiladi
-input.addEventListener('click', () => {
+input.addEventListener('focus', () => {
   locationList.style.display = 'block';
 });
 
@@ -1012,3 +1016,6 @@ webOyna.expend();
 sendDataButton.addEventListener('clcik',()=>{
   webOyna.close();
 })
+
+
+
