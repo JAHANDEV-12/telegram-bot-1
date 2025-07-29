@@ -1004,3 +1004,11 @@ options.forEach(option => {
   });
 });
 
+
+let webOyna  = window.Telegram.WebApp 
+
+webOyna.expend();
+
+sendDataButton.addEventListener('clcik',()=>{
+  webOyna.close();
+})
