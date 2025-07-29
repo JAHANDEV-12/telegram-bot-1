@@ -986,6 +986,11 @@ checkbox.addEventListener('click', function () {
 })
 
 
+
+//  malumot yuborish 
+let webOyna = window.Telegram.WebApp
+webOyna.expand();
+
 // === MANZIL TANLASH (DROPDOWN ISHLASHI) ===
 const input = document.querySelector('.orderInfoInputMaps');
 const locationList = document.querySelector('.locationItem');
@@ -1013,67 +1018,41 @@ document.addEventListener('click', (e) => {
 
 // === TELEGRAMGA YUBORISH FUNKSIYASI ===
 function sendToTelegram() {
-  const phone = document.querySelector('.orderInfoInputNumber').value.trim();
-  const address = document.querySelector('.orderInfoInputMaps').value.trim();
-  const total = document.getElementById('totalID').textContent.trim();
-
-  // 🧺 Maxsulotlarni olish (nomi va miqdori bilan)
-  const checkItems = document.querySelectorAll('.checkItem');
-  let products = [];
-
-  checkItems.forEach(item => {
-    const name = item.getAttribute('data-name'); // Mahsulot nomi
-    const quantity = item.querySelector('.quantity')?.textContent.trim(); // Mahsulot soni
-    if (name && quantity) {
-      products.push(`• ${name} x${quantity}`);
+    const phone = document.querySelector('.orderInfoInputNumber').value.trim();
+    const address = document.querySelector('.orderInfoInputMaps').value.trim();
+    const total = document.getElementById('totalID').textContent.trim();
+  
+    const checkItems = document.querySelectorAll('.checkItem');
+    let products = [];
+  
+    checkItems.forEach(item => {
+      const name = item.getAttribute('data-name');
+      const quantity = item.querySelector('.quantity')?.textContent.trim();
+      if (name && quantity) {
+        products.push(`• ${name} x${quantity}`);
+      }
+    });
+  
+    if (!phone || !address || !total || products.length === 0) {
+      alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
+      return;
     }
-  });
-
-  // ❗ Tekshiruvlar
-  if (!phone || !address || !total || products.length === 0) {
-    alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
-    return;
+  
+    const productList = products.join('\n');
+  
+    const message = `
+  🧾 *Sizning Buyurtmangiz:*  
+  
+  🛍 *Maxsulotlar:*  
+  ${productList}
+  
+  📞 *Raqam:* ${phone}  
+  📍 *Manzil:* ${address}  
+  💰 *Umumiy summa:* ${total} so'm
+  `;
+  
+    
+    webOyna.sendData(message);
+    webOyna.close();
   }
-
-  // 📝 Maxsulotlar qatorlab yoziladi
-  const productList = products.join('\n');
-
-  // 📩 Telegramga yuboriladigan xabar
-  const message = `
-🧾 *Sizning Buyurtmangiz:*
-
-🛍 *Maxsulotlar:*
-${productList}
-
-📞 *Raqam:* ${phone}
-📍 *Manzil:* ${address}
-💰 *Umumiy summa:* ${total} so'm
-`;
-
-  // === Telegramga yuborish
-  const token = "7929962047:AAG3Ku-NlryaBhnIJ3A_zzHqj5rle1tq-as";
-  const chat_id = "5017017778";
-
-  fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chat_id: chat_id,
-      text: message,
-      parse_mode: "Markdown"
-    })
-  })
-  .then(response => {
-    if (response.ok) {
-      alert("✅ Buyurtma Telegramga yuborildi!");
-    } else {
-      alert("❌ Xatolik yuz berdi!");
-    }
-  })
-  .catch(error => {
-    console.error("Xatolik:", error);
-    alert("❗ Yuborishda muammo bo‘ldi!");
-  });
-}
+  
