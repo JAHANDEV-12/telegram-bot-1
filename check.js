@@ -986,20 +986,13 @@ checkbox.addEventListener('click', function () {
 })
 
 
-
-//  malumot yuborish 
-    
-//  malumot yuborish 
-let webOyna = window.Telegram.WebApp
-webOyna.expand();
-
 // === MANZIL TANLASH (DROPDOWN ISHLASHI) ===
 const input = document.querySelector('.orderInfoInputMaps');
 const locationList = document.querySelector('.locationItem');
 const options = locationList.querySelectorAll('div');
 
 // Inputga bosilganda ro‘yxat ochiladi
-input.addEventListener('focus', () => {
+input.addEventListener('click', () => {
   locationList.style.display = 'block';
 });
 
@@ -1011,50 +1004,3 @@ options.forEach(option => {
   });
 });
 
-// Tashqariga bosilganda yopiladi
-document.addEventListener('click', (e) => {
-  if (!e.target.closest('.orderInfoInputMapsWrapper')) {
-    locationList.style.display = 'none';
-  }
-});
-
-  // Yuborish funksiyasi
-  function sendToTelegram() {
-    let webOyna = window.Telegram.WebApp;
-
-    const phone = document.querySelector('.orderInfoInputNumber').value.trim();
-    const address = document.querySelector('.orderInfoInputMaps').value.trim();
-    const total = document.getElementById('totalID')?.textContent.trim() || "0";
-
-    const checkItems = document.querySelectorAll('.checkItem');
-    let products = [];
-
-    checkItems.forEach(item => {
-      const name = item.getAttribute('data-name');
-      const quantity = item.querySelector('.quantity')?.textContent.trim();
-      if (name && quantity) {
-        products.push(`• ${name} x${quantity}`);
-      }
-    });
-
-    if (!phone || !address || products.length === 0) {
-      alert("❗ Iltimos, barcha maydonlarni to‘ldiring va mahsulot tanlang!");
-      return;
-    }
-
-    const productList = products.join('\n');
-
-    const message = `
-🧾 *Sizning Buyurtmangiz:*  
-
-🛍 *Maxsulotlar:*  
-${productList}
-
-📞 *Raqam:* ${phone}  
-📍 *Manzil:* ${address}  
-💰 *Umumiy summa:* ${total} so'm
-`;
-
-    webOyna.sendData(message); // faqat Telegram ichida ishlaydi
-    webOyna.close();
-  }
