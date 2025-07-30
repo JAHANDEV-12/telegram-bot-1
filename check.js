@@ -1008,16 +1008,56 @@ options.forEach(option => {
   });
 });
 
-
+// Tashqariga bosilganda yopiladi
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.orderInfoInputMapsWrapper')) {
+    locationList.style.display = 'none';
+  }
+});
 let webOyna = window.Telegram.WebApp;
+webOyna.expand(); // WebApp oynani fullscreen qiladi
 
-webOyna.expand(); // <- noto‘g‘ri yozilgan bo‘lgan, to‘g‘risi 'expand'
-
-const sendDataButton = document.querySelector('.sendData'); // tugmani olish
+const sendDataButton = document.getElementById('sendData'); // Tugma element
 
 sendDataButton.addEventListener('click', () => {
-  webOyna.close(); // Telegram WebApp oynasini yopadi
+  // inputlardan qiymatlarni olish
+  const number = document.getElementById('userNumber').value.trim();
+  const maps = document.getElementById('userMaps').value.trim();
+  const checkBox = document.getElementById('openOrderInfoID').checked;
+
+  // Maxsulotlar va narxlar
+  const checkItems = document.querySelectorAll('.checkItem'); // Tanlangan mahsulotlar uchun .checkItem class kerak
+  const products = [];
+  
+  checkItems.forEach(item => {
+    const name = item.getAttribute('data-name'); // Mahsulot nomi
+    const price = item.getAttribute('data-price'); // Mahsulot narxi
+    const quantity = item.querySelector('.quantity')?.textContent.trim(); // Mahsulot soni
+
+    if (name && quantity && price) {
+      products.push(`📦 ${name} x${quantity} | ${price} so'm`);
+    }
+  });
+
+  const total = document.getElementById('totalID').textContent.trim(); // Umumiy narx
+
+  // ❗ Foydalanuvchi barcha ma’lumotlarni to‘ldirganini tekshiramiz
+  if (!number || !maps || products.length === 0 || !checkBox) {
+    alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
+    return;
+  }
+
+  // Yuboriladigan obyekt
+  const data = {
+    raqam: number,
+    manzil: maps,
+    mahsulotlar: products,
+    jami: `${total} so'm`
+  };
+
+  // Telegram botga JSON formatda yuborish
+  webOyna.sendData(JSON.stringify(data));
+
+  // Yopish
+  webOyna.close();
 });
-
-
-
