@@ -886,8 +886,7 @@ cakeDivProduct.forEach(cakeDiv => {
 
 
 // grill
-const grillDivProduct = document.querySelectorAll('.grillDiv') //import product
-
+const grillDivProduct = document.querySelectorAll('.grillDiv'); // import product
 
 grillDivProduct.forEach(grillDiv => {
     grillDiv.addEventListener('click', () => {
@@ -907,6 +906,7 @@ grillDivProduct.forEach(grillDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice); // ✅ kerakli atribut
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -925,7 +925,6 @@ grillDivProduct.forEach(grillDiv => {
                     total -= productPrice;
                     Total.textContent = total;
                 } else {
-                    // ⛔️ Mahsulotni to‘liq o‘chirish
                     total -= productPrice;
                     Total.textContent = total;
 
@@ -935,7 +934,6 @@ grillDivProduct.forEach(grillDiv => {
                     cartItemCount -= 1;
                     cartQuantity.textContent = cartItemCount;
 
-                    // Agar savat bo‘sh bo‘lsa
                     if (Object.keys(cart).length === 0) {
                         checkBoxContainer.style.display = 'none';
                         billConfirmTeg.style.display = 'none';
