@@ -1017,53 +1017,52 @@ document.addEventListener('click', (e) => {
 
 
 // malumot va check botga yuborish
+
+
 document.addEventListener("DOMContentLoaded", () => {
-  const webApp = window.Telegram.WebApp;
-  webApp.expand(); // Oynani fullscreen qiladi
+    const webApp = window.Telegram.WebApp;
+    webApp.expand(); // Oynani fullscreen qiladi
+  
+    const sendDataButton = document.getElementById('sendData'); // Yuborish tugmasi
+  
+    sendDataButton.addEventListener('click', () => {
+      // Foydalanuvchi tomonidan kiritilgan ma'lumotlar
+      const number = document.getElementById('userNumber')?.value.trim();
+      const maps = document.getElementById('userMaps')?.value.trim();
+      const checkBox = document.getElementById('openOrderInfoID')?.checked;
+  
+      // Maxsulotlar ro'yxatini yig'ish
+      const checkItems = document.querySelectorAll('.checkItem');
+      const products = [];
+  
+      checkItems.forEach(item => {
+        const name = item.getAttribute('data-name');
+        const price = item.getAttribute('data-price');
+        const quantity = item.querySelector('.quantity')?.textContent.trim();
+  
+        if (name && quantity && price) {
+          products.push(`📦 ${name} x${quantity} | ${price} so'm`);
+        }
+      });
+  
+      // Umumiy summa
+      const total = document.getElementById('totalID')?.textContent.trim();
+  
 
-  const sendDataButton = document.getElementById('sendData'); // Yuborish tugmasi
-
-  sendDataButton.addEventListener('click', () => {
-    // Foydalanuvchi tomonidan kiritilgan ma'lumotlar
-    const number = document.getElementById('userNumber')?.value.trim();
-    const maps = document.getElementById('userMaps')?.value.trim();
-    const checkBox = document.getElementById('openOrderInfoID')?.checked;
-
-    // Maxsulotlar ro'yxatini yig'ish
-    const checkItems = document.querySelectorAll('.checkItem');
-    const products = [];
-
-    checkItems.forEach(item => {
-      const name = item.getAttribute('data-name');
-      const price = item.getAttribute('data-price');
-      const quantity = item.querySelector('.quantity')?.textContent.trim();
-
-      if (name && quantity && price) {
-        products.push(`📦 ${name} x${quantity} | ${price} so'm`);
-      }
+  
+      // Telegramga yuboriladigan obyekt
+      const data = {
+        raqam: number,
+        manzil: maps,
+        mahsulotlar: products,
+        jami: `${total} so'm`
+      };
+  
+      // Telegram botga JSON ko'rinishida yuborish
+      webApp.sendData(JSON.stringify(data));
+  
+      // Web ilovani yopish
+      webApp.close();
     });
-
-    // Umumiy summa
-    const total = document.getElementById('totalID')?.textContent.trim();
-
-    // Barcha maydonlar to'ldirilganmi, tekshiramiz
-    // if (!number || !maps || products.length === 0 || !checkBox) {
-    //   alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
-    //   return;
-    // }
-
-    // Telegramga yuboriladigan obyekt
-    const data = {
-      raqam: number,
-      manzil: maps,
-      mahsulotlar: products,
-      jami: `${total} so'm`
-    };
-
-    // Telegram botga JSON ko'rinishida yuborish
-    webApp.sendData(JSON.stringify(data));
-
-    // Web ilovani yopish
-    webApp.close();
   });
-});
+  
