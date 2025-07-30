@@ -1047,10 +1047,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const total = document.getElementById('totalID')?.textContent.trim();
 
     // Barcha maydonlar to'ldirilganmi, tekshiramiz
-    if (!number || !maps || products.length === 0 || !checkBox) {
-      alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
-      return;
-    }
+    // if (!number || !maps || products.length === 0 || !checkBox) {
+    //   alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
+    //   return;
+    // }
 
     // Telegramga yuboriladigan obyekt
     const data = {
