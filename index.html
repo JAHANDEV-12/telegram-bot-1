@@ -107,13 +107,7 @@
             margin-top: 20px;
         }
 
-        .menu_head {
-            opacity: 0;
-            transition: all 0.3s ease;
-          }
-          .menu_head.visible {
-            opacity: 1;
-          }
+        
           
     </style>
     <!-- setting need -->
@@ -632,9 +626,9 @@
         </div>
         <div class="orderInfo" id="orderInfoID">
             <h1 class="orderInfoH1">Malumotingizni kiriting</h1>
-            <input class="orderInfoInputNumber" type="text" placeholder="Raqamingizni kiriting"> <br>
+            <input id="userNumber" class="orderInfoInputNumber" type="text" placeholder="Raqamingizni kiriting"> <br>
             <div class="orderInfoInputMapsWrapper">
-                <input class="orderInfoInputMaps" type="text" placeholder="Manzilingizni kiriting"><br>
+                <input id="userMaps" class="orderInfoInputMaps" type="text" placeholder="Manzilingizni kiriting"><br>
                 <div class="locationItem">
                     <div>POYTUG'</div>
                     <div>TO'RTKOL</div>
@@ -647,7 +641,7 @@
         </div>
         <button id="sendData"  style="display: none;">check botga <br> yuborish</button>
 
-
+        
         <button class="back" onclick="checkBack()">
             Menuga qaytish </button>
     </div>
@@ -855,3 +849,23 @@
 
 
 
+
+<!-- </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bot.css">
+</head>
+<body>
+
+</body>
+</html> -->
+
+<!-- Пользователь нажимает кнопку.
+
+В Telegram внутри чата открывается твой сайт (как приложение).
+
+Сайт может получать данные пользователя, отправлять заказы в бот и т.д. -->
