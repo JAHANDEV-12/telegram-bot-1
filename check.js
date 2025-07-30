@@ -1021,46 +1021,46 @@ document.addEventListener('click', (e) => {
 
 document.addEventListener("DOMContentLoaded", () => {
     const webApp = window.Telegram.WebApp;
-    webApp.expand(); // Oynani fullscreen qiladi
-  
-    const sendDataButton = document.getElementById('sendData'); // Yuborish tugmasi
-  
+    webApp.expand(); // Ekranni fullscreen qiladi
+
+    const sendDataButton = document.getElementById('sendData'); // "Yuborish" tugmasi
+
     sendDataButton.addEventListener('click', () => {
-      // Foydalanuvchi tomonidan kiritilgan ma'lumotlar
+      // Foydalanuvchi kiritgan ma'lumotlar
       const number = document.getElementById('userNumber')?.value.trim();
       const maps = document.getElementById('userMaps')?.value.trim();
       const checkBox = document.getElementById('openOrderInfoID')?.checked;
-  
-      // Maxsulotlar ro'yxatini yig'ish
+
+      // Mahsulotlar ro'yxati
       const checkItems = document.querySelectorAll('.checkItem');
       const products = [];
-  
+
       checkItems.forEach(item => {
         const name = item.getAttribute('data-name');
         const price = item.getAttribute('data-price');
         const quantity = item.querySelector('.quantity')?.textContent.trim();
-  
+
         if (name && quantity && price) {
           products.push(`📦 ${name} x${quantity} | ${price} so'm`);
         }
       });
-  
-      // Umumiy summa
-      const total = document.getElementById('totalID')?.textContent.trim();
-  
 
-  
-      // Telegramga yuboriladigan obyekt
+      // Jami summa
+      const total = document.getElementById('totalID')?.textContent.trim();
+
+      // Check matnini tayyorlash
+      const checkText = `${products.join('\n')}\n\n💰 Jami: ${total} so'm`;
+
+      // Telegram botga yuboriladigan JSON obyekt
       const data = {
         raqam: number,
         manzil: maps,
-        mahsulotlar: products,
-        jami: `${total} so'm`
+        check: checkText
       };
-  
-      // Telegram botga JSON ko'rinishida yuborish
+
+      // Ma'lumotlarni botga yuborish
       webApp.sendData(JSON.stringify(data));
-  
+
       // Web ilovani yopish
       webApp.close();
     });
