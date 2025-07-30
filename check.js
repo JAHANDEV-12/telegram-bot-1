@@ -972,7 +972,7 @@ grillDivProduct.forEach(grillDiv => {
 const checkbox = document.getElementById('openOrderInfoID')
 const billConfirmTeg = document.getElementById('orderInfoID')
 const check  = document.getElementById('check')
-const sendDataButton = document.getElementById('sendData')  
+
 
 
 checkbox.addEventListener('click', function () {
