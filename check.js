@@ -824,6 +824,7 @@ cakeDivProduct.forEach(cakeDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
