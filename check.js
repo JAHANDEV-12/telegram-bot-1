@@ -31,6 +31,7 @@ drinkdivProducts.forEach(drinkDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -109,6 +110,7 @@ breadDivProducts.forEach(breadDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -187,6 +189,7 @@ saladdivProducts.forEach(saladDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -268,6 +271,7 @@ kofeDivProducts.forEach(kofeDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -347,6 +351,7 @@ natioanalFood1DivProduct.forEach(natioanalFood1Div => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -431,6 +436,7 @@ natioanalFood2DivProduct.forEach(natioanalFood2Div => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -510,6 +516,7 @@ UygurFoodDivProducts.forEach(UygurFoodDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -586,6 +593,7 @@ KomboFoodDivProducts.forEach(KomboFoodDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -664,6 +672,7 @@ setShashlikDivProduct.forEach(setShashlikDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
@@ -746,6 +755,7 @@ fastFoodDivProduct.forEach(fastFoodDiv => {
             const checkItems = document.createElement('div');
             checkItems.classList.add('checkItem');
             checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
             checkItems.innerHTML = `
                 ${productName} - ${productPrice} so'm
                 <div class="quantityControls">
