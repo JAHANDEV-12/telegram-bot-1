@@ -1053,7 +1053,11 @@ document.addEventListener("DOMContentLoaded", () => {
           products.push(`📦 ${name} x${quantity} | ${price} so'm`);
         }
       });
-
+        // Malumotlar toliqligi tekshrish
+         if (!number || !maps || products.length === 0 || !checkBox) {
+        alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
+        return;
+      }
       // Jami summa
       const total = document.getElementById('totalID')?.textContent.trim();
 
