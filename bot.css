@@ -301,8 +301,7 @@
 
 
     /* product div */
-    .drinkDiv,
-    .drinkDiv,
+   
     .breadDiv,
     .saladDiv,
     .kofeDiv,
@@ -320,15 +319,33 @@
         height: 100px;
         border-radius: 10px;
     }
-
+    .drinkDiv{
+        position: relative;
+        width: 80px;
+        height: 100px;
+        border-radius: 10px;
+        border: 2.5px solid#cf2727;
+    }
 
     /* product div */
 
+    /* product div img */
+    .drinkDivImg{
+        position: absolute;
+        width: 75px;
+        height: 50px;
+        display: block;
+        bottom: 45px;
+        border-radius: 5px;
+        z-index: 1;
+        
+    }
+    /* product div img */
 
 
 
     /* product h1 */
-    .pepsi_h1,
+    
     .drinkDivH1,
     .breadDivH1,
     .saladDivH1,
@@ -341,8 +358,10 @@
     .fastFoodDivH1,
     .cakeDivH1,
     .grillDivH1 {
-        color: rgb(5, 5, 112);
-        margin-top: 5px;
+        position: relative;
+        color: white;
+        margin-top: 50px;
+        z-index: 10 ;
 
     }
 
@@ -395,16 +414,7 @@
     /* product h1 */
 
 
-    .pepsi_div img {
-        width: 40px;
-        height: 60px;
-        padding: 15px 5px;
-        text-decoration: none;
-        color: black;
-        /* background-color: blue; */
-        display: none;
-        border-radius: 5px;
-    }
+   
 
 
     /* product p */
