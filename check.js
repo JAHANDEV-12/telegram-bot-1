@@ -1,20 +1,23 @@
 
-
 const checkBoxContainer = document.getElementById('checkBoxContainer')
-const checkOut = document.getElementById('checkOutID') //import 
+const checkOut = document.getElementById('checkOutID')
 const Total = document.getElementById('totalID')
 const cartQuantity = document.querySelector('.cartQuantity')
 let total = 0
 const cart = {}
 let cartItemCount = 0;
 
+const drinkdivProducts = document.querySelectorAll('.drinkDiv')
 
-
-// drink
-const drinkdivProducts = document.querySelectorAll('.drinkDiv') //import product
+// DEBOUNCE FLAG
+let debounce = false;
 
 drinkdivProducts.forEach(drinkDiv => {
-    drinkDiv.addEventListener('click', () => {
+    drinkDiv.addEventListener('pointerdown', () => {
+        if (debounce) return;
+        debounce = true;
+        setTimeout(() => debounce = false, 250); // 250ms blokirovka
+
         const productName = drinkDiv.getAttribute('data-name');
         const productPrice = parseInt(drinkDiv.getAttribute('data-price'));
 
@@ -42,7 +45,7 @@ drinkdivProducts.forEach(drinkDiv => {
 
             checkOut.appendChild(checkItems);
 
-            // ➖ Minus button
+            // ➖ Minus
             checkItems.querySelector('.minus').addEventListener('click', () => {
                 if (cart[productName].quantity > 1) {
                     cart[productName].quantity -= 1;
@@ -50,27 +53,23 @@ drinkdivProducts.forEach(drinkDiv => {
                     total -= productPrice;
                     Total.textContent = total;
                 } else {
-                    // ⛔️ Mahsulotni to‘liq o‘chirish
                     total -= productPrice;
                     Total.textContent = total;
 
-                    checkItems.remove(); // HTMLdan olib tashlash
-                    delete cart[productName]; // cart objectdan o‘chirish
+                    checkItems.remove();
+                    delete cart[productName];
 
                     cartItemCount -= 1;
                     cartQuantity.textContent = cartItemCount;
 
-                    // Agar savat bo‘sh bo‘lsa
                     if (Object.keys(cart).length === 0) {
                         checkBoxContainer.style.display = 'none';
-                        billConfirmTeg.style.display = 'none';
-                        checkbox.checked = false;
                         cartQuantity.classList.remove('active');
                     }
                 }
             });
 
-            // ➕ Plus button
+            // ➕ Plus
             checkItems.querySelector('.plus').addEventListener('click', () => {
                 cart[productName].quantity += 1;
                 checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
