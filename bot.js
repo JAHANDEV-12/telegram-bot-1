@@ -32,9 +32,11 @@ function openDrink() {
     document.querySelector('.cake').classList.add('hidden')
     document.querySelector('.grill').classList.add('hidden')
 
+
+ 
     document .getElementById('drinkID').classList.add('active')
 
-
+    
     document.getElementById('menuBackID').classList.add('active')
 
 }
@@ -332,13 +334,13 @@ function back() {
 
 
     document.getElementById('drinkID').classList.remove('active')
-    document.getElementById('breadCollectID').classList.remove('active')
-    document.getElementById('saladCollectID').classList.remove('active')
-    document.getElementById('kofeID').classList.remove('active')
+    // document.getElementById('breadCollectID').classList.remove('active')
+    // document.getElementById('saladCollectID').classList.remove('active')
+    // document.getElementById('kofeID').classList.remove('active')
     document.getElementById('NatioanalFood1ID').classList.remove('active')
     document.getElementById('NatioanalFood2ID').classList.remove('active')
     document.getElementById('UygurFoodID').classList.remove('active')
-    document.getElementById('KomboFoodID').classList.remove('active')
+    document.getElementById('KomboFoodID').classList.remove('active')   
     document.getElementById('setShashlikID').classList.remove('active')
     document.getElementById('fastFoodID').classList.remove('active')
     document.getElementById('cakeID').classList.remove('active')
@@ -348,6 +350,8 @@ function back() {
 
 
     document.getElementById('menuBackID').classList.remove('active')
+    
+
 }
 // opencheck
 function openCheck() {
