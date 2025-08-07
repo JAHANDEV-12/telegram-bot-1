@@ -254,7 +254,7 @@
     }
 
     /* set and collect */
-    .drinkCollect,
+
     .kofeCollect,
     .breadCollect,
     .saladCollect,
@@ -273,9 +273,17 @@
         transition: 0.5s linear;
         transform: scale(0);
         display: none;
-        
+
     }
 
+    .drinkCollect {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 55px;
+        display: none;
+
+    }
 
     /* set and collect */
 
@@ -328,7 +336,7 @@
         border-radius: 10px;
     }
 
-    .drinkDiv.pepsi {
+    .drinkDiv {
         position: relative;
         width: 80px;
         height: 85px;
@@ -339,17 +347,24 @@
         border-radius: 10px;
         margin: 10px 10px;
     }
-    .drinkDiv.fanta {
+
+    .Pepsi {
         position: relative;
         width: 80px;
         height: 85px;
-        background-image: url(img/fantaImg.jpg);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 10px;
-        margin: 30px 10px;
+        
     }
+
+    .drinkDiv.pepsi:active {
+        outline: 2px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        background-color: rgba(230, 27, 27, 0.1);
+        /* Тень поверх фона */
+    }
+
+    
+
+    
 
 
     /* product div */
@@ -439,7 +454,8 @@
     .grillDivH1 {
         font-size: 0.80rem;
     }
-    .setShashlikDivH1{
+
+    .setShashlikDivH1 {
         font-size: 0.80rem;
         position: absolute;
         top: 50px;
