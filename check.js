@@ -11,7 +11,7 @@ let cartItemCount = 0;
 
 
 // drink
-const pepsiProduct = document.querySelector('.drinkDiv.pepsi'); // Faqat pepsi
+const pepsiProduct = document.querySelector('.Pepsi'); // Faqat pepsi
 
 if (pepsiProduct) {
     pepsiProduct.addEventListener('click', () => {
