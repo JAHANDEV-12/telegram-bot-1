@@ -216,7 +216,7 @@ function openKomboFood() {
 // KomboFood
 
 //  openSetShashkik
-function openSetShashkik() {
+function openSetShashlik() {
     document.querySelector('.drink').classList.add('hidden')
     document.querySelector('.bread').classList.add('hidden')
     document.querySelector('.salad').classList.add('hidden')
@@ -234,8 +234,6 @@ function openSetShashkik() {
     document.getElementById('setShashlikID').classList.add('active')
 
     document.getElementById('menuBackID').classList.add('active')
-
-
 }
 //openSetShashkik
 
@@ -334,9 +332,9 @@ function back() {
 
 
     document.getElementById('drinkID').classList.remove('active')
-    // document.getElementById('breadCollectID').classList.remove('active')
-    // document.getElementById('saladCollectID').classList.remove('active')
-    // document.getElementById('kofeID').classList.remove('active')
+    document.getElementById('breadCollectID').classList.remove('active')
+    document.getElementById('saladCollectID').classList.remove('active')
+    document.getElementById('kofeID').classList.remove('active')
     document.getElementById('NatioanalFood1ID').classList.remove('active')
     document.getElementById('NatioanalFood2ID').classList.remove('active')
     document.getElementById('UygurFoodID').classList.remove('active')
