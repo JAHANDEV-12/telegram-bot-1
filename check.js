@@ -11,7 +11,7 @@ let cartItemCount = 0;
 
 
 // drink
-const pepsiProduct = document.querySelector('.Pepsi'); // Faqat pepsi
+const pepsiProduct = document.querySelector('.pepsiOneLitr'); // Faqat pepsi
 
 if (pepsiProduct) {
     pepsiProduct.addEventListener('click', () => {
@@ -651,7 +651,7 @@ KomboFoodDivProducts.forEach(KomboFoodDiv => {
 
 
 // set shashlik
-const setShashlikDivProduct = document.querySelectorAll('.setShashlikDiv') //import product
+const setShashlikDivProduct = document.querySelectorAll('.setShashlikSmall') //import product
 
 setShashlikDivProduct.forEach(setShashlikDiv => {
     setShashlikDiv.addEventListener('click', () => {
