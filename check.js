@@ -10,13 +10,92 @@ let cartItemCount = 0;
 
 
 
-// drink
-const pepsiProduct = document.querySelector('.pepsiOneLitr'); // Faqat pepsi
+// drink 
 
-if (pepsiProduct) {
-    pepsiProduct.addEventListener('click', () => {
-        const productName = pepsiProduct.getAttribute('data-name');
-        const productPrice = parseInt(pepsiProduct.getAttribute('data-price'));
+// pepsi 0.5L
+const pepsiProducthalf = document.querySelector('.pepsiHalf'); // Faqat pepsi
+
+if (pepsiProducthalf) {
+    pepsiProducthalf.addEventListener('click', () => {
+        const productName = pepsiProducthalf.getAttribute('data-name');
+        const productPrice = parseInt(pepsiProducthalf.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove();
+                    delete cart[productName];
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+}
+// pepsi 0.5l
+
+
+
+const pepsiProductOneLiter = document.querySelector('.pepsiOneLitr'); // Faqat pepsi
+
+if (pepsiProductOneLiter) {
+    pepsiProductOneLiter.addEventListener('click', () => {
+        const productName = pepsiProductOneLiter.getAttribute('data-name');
+        const productPrice = parseInt(pepsiProductOneLiter.getAttribute('data-price'));
 
         cartQuantity.classList.add('active');
         checkBoxContainer.style.display = 'block';
@@ -86,6 +165,314 @@ if (pepsiProduct) {
 }
 
 
+// pepsi 1.5L
+const pepsiProductOnehalf = document.querySelector('.pepsiOneHalf'); // Faqat pepsi
+
+if (pepsiProductOnehalf) {
+    pepsiProductOnehalf.addEventListener('click', () => {
+        const productName = pepsiProductOnehalf.getAttribute('data-name');
+        const productPrice = parseInt(pepsiProductOnehalf.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove();
+                    delete cart[productName];
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+}
+
+
+// fanta 0.5l
+const fantaProducthalf = document.querySelector('.fantaHalf'); // Faqat pepsi
+
+if (fantaProducthalf) {
+    fantaProducthalf.addEventListener('click', () => {
+        const productName = fantaProducthalf.getAttribute('data-name');
+        const productPrice = parseInt(fantaProducthalf.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove();
+                    delete cart[productName];
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+}
+// fanta 0.5l
+
+// fanta 1l
+
+
+
+const fantaProductOneLiter = document.querySelector('.fantaOneLitr'); // Faqat pepsi
+
+if (fantaProductOneLiter) {
+    fantaProductOneLiter.addEventListener('click', () => {
+        const productName = fantaProductOneLiter.getAttribute('data-name');
+        const productPrice = parseInt(fantaProductOneLiter.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove();
+                    delete cart[productName];
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+}
+
+// fanta 1 l
+
+
+// fanta 1.5l
+const fantaProductOnehalf = document.querySelector('.fantaOneHalf'); // Faqat pepsi
+
+if (fantaProductOnehalf) {
+    fantaProductOnehalf.addEventListener('click', () => {
+        const productName = fantaProductOnehalf.getAttribute('data-name');
+        const productPrice = parseInt(fantaProductOnehalf.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove();
+                    delete cart[productName];
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+}
+// fanta 1.5l
 // drink
 
 
@@ -728,6 +1115,171 @@ setShashlikDivProduct.forEach(setShashlikDiv => {
 });
 
 
+// set shashlik small
+
+
+// set shashlik middle
+const setShashlikDivProductMiddle = document.querySelectorAll('.setShashlikMiddle') //import product
+
+setShashlikDivProductMiddle.forEach(setShashlikDivProductMiddle => {
+    setShashlikDivProductMiddle.addEventListener('click', () => {
+        const productName = setShashlikDivProductMiddle.getAttribute('data-name');
+        const productPrice = parseInt(setShashlikDivProductMiddle.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    // ⛔️ Mahsulotni to‘liq o‘chirish
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove(); // HTMLdan olib tashlash
+                    delete cart[productName]; // cart objectdan o‘chirish
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    // Agar savat bo‘sh bo‘lsa
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+});
+
+
+// set shashlik midle
+
+
+
+//set shashlik big
+
+const setShashlikDivProductBig = document.querySelectorAll('.setShashlikBig') //import product
+
+setShashlikDivProductBig.forEach(setShashlikDivProductBig => {
+    setShashlikDivProductBig.addEventListener('click', () => {
+        const productName = setShashlikDivProductBig.getAttribute('data-name');
+        const productPrice = parseInt(setShashlikDivProductBig.getAttribute('data-price'));
+
+        cartQuantity.classList.add('active');
+        checkBoxContainer.style.display = 'block';
+
+        if (cart[productName]) {
+            cart[productName].quantity += 1;
+            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+        } else {
+            cart[productName] = { quantity: 1, price: productPrice };
+
+            const checkItems = document.createElement('div');
+            checkItems.classList.add('checkItem');
+            checkItems.setAttribute('data-name', productName);
+            checkItems.setAttribute('data-price', productPrice);
+            checkItems.innerHTML = `
+                ${productName} - ${productPrice} so'm
+                <div class="quantityControls">
+                    <button class="minus">-</button>
+                    <button class="plus">+</button>
+                    <span class="quantity">1</span>       
+                </div>`;
+
+            checkOut.appendChild(checkItems);
+
+            // ➖ Minus button
+            checkItems.querySelector('.minus').addEventListener('click', () => {
+                if (cart[productName].quantity > 1) {
+                    cart[productName].quantity -= 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total -= productPrice;
+                    Total.textContent = total;
+                } else {
+                    // ⛔️ Mahsulotni to‘liq o‘chirish
+                    total -= productPrice;
+                    Total.textContent = total;
+
+                    checkItems.remove(); // HTMLdan olib tashlash
+                    delete cart[productName]; // cart objectdan o‘chirish
+
+                    cartItemCount -= 1;
+                    cartQuantity.textContent = cartItemCount;
+
+                    // Agar savat bo‘sh bo‘lsa
+                    if (Object.keys(cart).length === 0) {
+                        checkBoxContainer.style.display = 'none';
+                        billConfirmTeg.style.display = 'none';
+                        checkbox.checked = false;
+                        cartQuantity.classList.remove('active');
+                    }
+                }
+            });
+
+            // ➕ Plus button
+            checkItems.querySelector('.plus').addEventListener('click', () => {
+                cart[productName].quantity += 1;
+                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                total += productPrice;
+                Total.textContent = total;
+            });
+        }
+
+        total += productPrice;
+        Total.textContent = total;
+
+        cartItemCount += 1;
+        cartQuantity.textContent = cartItemCount;
+    });
+});
+
+// set shashlikbig
+// set shashlik
 // set shashlik
 
 
