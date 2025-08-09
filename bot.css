@@ -409,6 +409,8 @@
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 10px;
+        margin-top:50px;
+        
         bottom: 0%;
     }
     .setShashlikSmall{
@@ -622,3 +624,4 @@
 
 
     */
+
