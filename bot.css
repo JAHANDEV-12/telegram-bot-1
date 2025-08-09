@@ -267,13 +267,22 @@
     .cakeCollect,
     .grillCollect {
         position: relative;
+        height: 100%;
         opacity: 0;
         cursor: pointer;
         justify-content: center;
         transition: 0.5s linear;
         transform: scale(0);
-        display: none;
-        
+        display: none;   
+    }
+    .drinkCollect{
+        height: auto;
+        margin-bottom: 350px;
+    }
+    .setShashlikCollect{
+        height: auto;
+        margin-bottom: 100px;
+
     }
 
 
@@ -327,37 +336,39 @@
         height: 100px;
         border-radius: 10px;
     }
-    .drinkDiv{
-        position: relative;
+  
+
+    .pepsiHalf,
+    .pepsiOneLitr,
+    .pepsiOneHalf {
+        position: absolute;
         width: 80px;
         height: 85px;
         background-image: url(img/pepsiBootleImg.png);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-        border-radius: 10px;
-        margin: 10px 10px;   
+        border-radius: 10px; 
+       
     }
-
-    .drinkDiv.pepsi {
-        position: relative;
-        width: 80px;
-        height: 85px;
-        background-image: url(img/pepsiBootleImg.png);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-radius: 10px;
-        margin: 10px 10px;
+    .pepsiHalf{
+        position: absolute;
+        right: 80px;
     }
-    .drinkDiv.pepsi:active {
-    outline: 2px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-    background-color: rgba(230, 27, 27, 0.1); /* Тень поверх фона */
-}
+    .pepsiOneLitr{
+        position: absolute;
+        left: -40px;
+    }
+    .pepsiOneHalf{
+        position: absolute;
+        left: 80px;
+    }
+   
 
-    .drinkDiv.fanta {
-        position: relative;
+    .fantaHalf,
+    .fantaOneLitr,
+    .fantaOneHalf{
+        position: absolute;
         width: 80px;
         height: 85px;
         background-image: url(img/fantaImg.jpg);
@@ -365,26 +376,32 @@
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 10px;
-        margin: 30px 10px;
+        top: 150px;
+        bottom: 200px;
+        padding-bottom: 100px;
     }
-
+    .fantaHalf{
+        position: absolute;
+        right: 80px;
+    }
+    .fantaOneLitr{
+        position: absolute;
+        left: -40px;
+    }
+    .fantaOneHalf{
+        position: absolute;
+        left: 80px;
+    }
 
     /* product div */
 
     /* product div img */
-    .drinkDivImg {
+    
+
+    .setShashlikSmall,
+    .setShashlikMiddle,
+    .setShashlikBig{
         position: absolute;
-        width: 75px;
-        height: 50px;
-        display: block;
-        bottom: 45px;
-        border-radius: 5px;
-        z-index: 1;
-
-    }
-
-    .setShashlikDiv{
-        position: relative;
         width: 80px;
         height: 85px;
         background-image: url(img/shashlikKombo.jpg);
@@ -392,8 +409,19 @@
         background-repeat: no-repeat;
         background-size: cover;
         border-radius: 10px;
-        margin: 30px 10px;
-        
+        bottom: 0%;
+    }
+    .setShashlikSmall{
+        position: absolute;
+        right: 80px;
+    }
+    .setShashlikMiddle{
+        position: absolute;
+        left: -40px;
+    }
+    .setShashlikBig{
+        position: absolute;
+        left: 80px;
     }
     /* product div img */
 
@@ -482,7 +510,7 @@
 
     /* product p */
 
-    .drinkDiv p,
+    .drinkDivP,
     .breadDiv p,
     .saladDiv p,
     .kofeDiv p,
@@ -490,7 +518,7 @@
     .natioanalFood2Div p,
     .UygurFoodDiv p,
     .KomboFoodDiv p,
-    .setShashlikDiv p,
+    .setShashlikDivP,
     .fastFoodDiv p,
     .cakeDiv p,
     .grillDiv p {
@@ -502,6 +530,7 @@
         width: 100%;
         bottom: 5px;
     }
+
 
     /* product p */
 
