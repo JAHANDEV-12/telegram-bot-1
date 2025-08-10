@@ -1577,8 +1577,6 @@ document.addEventListener('click', (e) => {
 
 
 // malumot va check botga yuborish
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const webApp = window.Telegram.WebApp;
   webApp.expand(); // Oynani fullscreen qiladi
@@ -1589,8 +1587,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Foydalanuvchi tomonidan kiritilgan ma'lumotlar
     const number = document.getElementById('userNumber')?.value.trim();
     const maps = document.getElementById('userMaps')?.value.trim();
-    const note = document.getElementById('userNote')?.value.trim(); // ✅ TO‘G‘RI YOL
+    const note = document.getElementById('userNote')?.value.trim();
     const checkBox = document.getElementById('openOrderInfoID')?.checked;
+
+    // 📌 Raqam tekshiruvi: faqat son va 9 ta belgidan iborat bo‘lishi kerak
+    const phoneRegex = /^\d{9}$/;
+    if (!phoneRegex.test(number)) {
+      alert("❗ Raqam faqat 9 ta raqamdan iborat bo‘lishi kerak!");
+      return;
+    }
 
     // Maxsulotlar ro'yxatini yig'ish
     const checkItems = document.querySelectorAll('.checkItem');
@@ -1619,7 +1624,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = {
       raqam: number,
       manzil: maps,
-      note: note || "", // ✅ Bo‘sh bo‘lsa ham string sifatida yuboriladi
+      note: note || "",
       mahsulotlar: products,
       jami: `${total} so'm`
     };
