@@ -13,20 +13,50 @@ let cartItemCount = 0;
 // drink 
 
 // pepsi 0.5L
+// Stop listni URL orqali olish
+const urlParams = new URLSearchParams(window.location.search);
+const stoplist = JSON.parse(urlParams.get("stoplist") || "{}");
+
+// Mahsulotni tanlash
 const pepsiProducthalf = document.querySelector('.pepsiHalf'); // Faqat pepsi
 
 if (pepsiProducthalf) {
+    const productName = pepsiProducthalf.getAttribute('data-name');
+    let stock = stoplist[productName] ?? 0; // ❗ Python’dan kelgan qoldiq miqdor
+
+    const qtySpan = pepsiProducthalf.querySelector("#stopListQuantity");
+    qtySpan.textContent = `Qoldi: ${stock} ta`;
+
+    // Agar mavjud bo‘lmasa, bloklab qo‘yamiz
+    if (stock === 0) {
+        pepsiProducthalf.style.opacity = "0.5";
+        pepsiProducthalf.style.pointerEvents = "none";
+        qtySpan.textContent = "❌ Mavjud emas";
+        return;
+    }
+
+    // Click hodisasi
     pepsiProducthalf.addEventListener('click', () => {
-        const productName = pepsiProducthalf.getAttribute('data-name');
+        if (stock <= 0) {
+            alert("❌ Bu mahsulot tugagan");
+            return;
+        }
+
         const productPrice = parseInt(pepsiProducthalf.getAttribute('data-price'));
 
         cartQuantity.classList.add('active');
         checkBoxContainer.style.display = 'block';
 
         if (cart[productName]) {
-            cart[productName].quantity += 1;
-            const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
-            checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+            // ✅ Faqat qoldiqdan oshmasa
+            if (cart[productName].quantity < stock) {
+                cart[productName].quantity += 1;
+                const checkItem = checkOut.querySelector(`[data-name="${productName}"]`);
+                checkItem.querySelector('.quantity').textContent = cart[productName].quantity;
+            } else {
+                alert("❗ Bu mahsulotdan ko‘p qo‘shib bo‘lmaydi (Stop list cheklovi)");
+                return;
+            }
         } else {
             cart[productName] = { quantity: 1, price: productPrice };
 
@@ -72,10 +102,14 @@ if (pepsiProducthalf) {
 
             // ➕ Plus button
             checkItems.querySelector('.plus').addEventListener('click', () => {
-                cart[productName].quantity += 1;
-                checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
-                total += productPrice;
-                Total.textContent = total;
+                if (cart[productName].quantity < stock) {
+                    cart[productName].quantity += 1;
+                    checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
+                    total += productPrice;
+                    Total.textContent = total;
+                } else {
+                    alert("❗ Bu mahsulotdan ko‘p qo‘shib bo‘lmaydi (Stop list cheklovi)");
+                }
             });
         }
 
@@ -86,6 +120,7 @@ if (pepsiProducthalf) {
         cartQuantity.textContent = cartItemCount;
     });
 }
+
 // pepsi 0.5l
 
 
@@ -1637,3 +1672,4 @@ document.addEventListener("DOMContentLoaded", () => {
     webApp.close();
   });
 });
+
