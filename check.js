@@ -1613,30 +1613,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const webApp = window.Telegram.WebApp;
   webApp.expand();
 
-  const phoneInput = document.getElementById('userNumber');
-
-  // Boshlang'ich +998 qo'yish
-  phoneInput.value = "+998";
-
-  // Inputda faqat raqam qabul qilish
-  phoneInput.addEventListener("input", () => {
-    // Faqat raqamlarni qoldirish (plusni ham qoldiramiz)
-    phoneInput.value = "+998" + phoneInput.value.replace(/\D/g, "").slice(3, 12);
-  });
+  // Eski buyurtma localStorage'da bo‘lsa qayta yuklash
+  const oldOrder = JSON.parse(localStorage.getItem("last_order") || "null");
+  if (oldOrder && oldOrder.mahsulotlar) {
+    oldOrder.mahsulotlar.forEach(prod => {
+      const item = document.querySelector(`[data-name="${prod.name}"]`);
+      if (item) {
+        const qtyEl = item.querySelector(".quantity");
+        if (qtyEl) qtyEl.textContent = prod.count;
+      }
+    });
+  }
 
   const sendDataButton = document.getElementById('sendData');
   sendDataButton.addEventListener('click', () => {
-    const number = phoneInput.value.trim();
+    const number = document.getElementById('userNumber').value.trim();
     const maps = document.getElementById('userMaps')?.value.trim();
     const note = document.getElementById('userNote')?.value.trim();
     const checkBox = document.getElementById('openOrderInfoID')?.checked;
-
-    // Telefon formati: +998 va keyingi 9 ta raqam
-    const phoneRegex = /^\+998\d{9}$/;
-    if (!phoneRegex.test(number)) {
-      alert("❗ Raqam formati noto‘g‘ri! Masalan: +998901234567");
-      return;
-    }
 
     const checkItems = document.querySelectorAll('.checkItem');
     const products = [];
@@ -1646,17 +1640,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const price = item.getAttribute('data-price');
       const quantity = item.querySelector('.quantity')?.textContent.trim();
 
-      if (name && quantity && price) {
-        products.push(`📦 ${name} x${quantity} | ${price} so'm`);
+      if (name && quantity && price && Number(quantity) > 0) {
+        products.push({ name, price, count: Number(quantity) });
       }
     });
 
     const total = document.getElementById('totalID')?.textContent.trim();
-
-    if (!number || !maps || products.length === 0 || !checkBox) {
-      alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
-      return;
-    }
 
     const data = {
       raqam: number,
@@ -1666,8 +1655,13 @@ document.addEventListener("DOMContentLoaded", () => {
       jami: `${total} so'm`
     };
 
+    // ❗ Eski tanlovni saqlab qo‘yamiz
+    localStorage.setItem("last_order", JSON.stringify(data));
+
     webApp.sendData(JSON.stringify(data));
     webApp.close();
   });
 });
+
+
 
