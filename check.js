@@ -13,20 +13,12 @@ let cartItemCount = 0;
 // drink 
 
 // pepsi 0.5L
-const pepsiProducthalf = document.querySelector('.pepsiHalf');
+const pepsiProducthalf = document.querySelector('.pepsiHalf'); // Faqat pepsi
 
 if (pepsiProducthalf) {
     pepsiProducthalf.addEventListener('click', () => {
         const productName = pepsiProducthalf.getAttribute('data-name');
         const productPrice = parseInt(pepsiProducthalf.getAttribute('data-price'));
-
-        const maxQuantity = STOP_LIST[productName] || Infinity;
-        const currentQuantity = cart[productName]?.quantity || 0;
-
-        if (currentQuantity >= maxQuantity) {
-            alert(`Uzr, ${productName} dan faqat ${maxQuantity} dona qolgan.`);
-            return;
-        }
 
         cartQuantity.classList.add('active');
         checkBoxContainer.style.display = 'block';
@@ -76,32 +68,14 @@ if (pepsiProducthalf) {
                         cartQuantity.classList.remove('active');
                     }
                 }
-
-                // ✅ Qolgan miqdorni yangilash
-                const stopListSpan = document.getElementById('stopListQuantity');
-                if (STOP_LIST[productName] !== undefined) {
-                    stopListSpan.textContent = STOP_LIST[productName] - cart[productName]?.quantity || 0;
-                }
             });
 
             // ➕ Plus button
             checkItems.querySelector('.plus').addEventListener('click', () => {
-                const current = cart[productName].quantity;
-                if (current >= maxQuantity) {
-                    alert(`Cheklov: ${productName} dan faqat ${maxQuantity} dona olish mumkin.`);
-                    return;
-                }
-
                 cart[productName].quantity += 1;
                 checkItems.querySelector('.quantity').textContent = cart[productName].quantity;
                 total += productPrice;
                 Total.textContent = total;
-
-                // ✅ Qolgan miqdorni yangilash
-                const stopListSpan = document.getElementById('stopListQuantity');
-                if (STOP_LIST[productName] !== undefined) {
-                    stopListSpan.textContent = STOP_LIST[productName] - cart[productName].quantity;
-                }
             });
         }
 
@@ -110,15 +84,8 @@ if (pepsiProducthalf) {
 
         cartItemCount += 1;
         cartQuantity.textContent = cartItemCount;
-
-        // ✅ Qolgan miqdorni yangilash
-        const stopListSpan = document.getElementById('stopListQuantity');
-        if (STOP_LIST[productName] !== undefined) {
-            stopListSpan.textContent = STOP_LIST[productName] - cart[productName].quantity;
-        }
     });
 }
-
 // pepsi 0.5l
 
 
@@ -1613,24 +1580,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const webApp = window.Telegram.WebApp;
   webApp.expand();
 
-  // Eski buyurtma localStorage'da bo‘lsa qayta yuklash
-  const oldOrder = JSON.parse(localStorage.getItem("last_order") || "null");
-  if (oldOrder && oldOrder.mahsulotlar) {
-    oldOrder.mahsulotlar.forEach(prod => {
-      const item = document.querySelector(`[data-name="${prod.name}"]`);
-      if (item) {
-        const qtyEl = item.querySelector(".quantity");
-        if (qtyEl) qtyEl.textContent = prod.count;
-      }
-    });
-  }
+  const phoneInput = document.getElementById('userNumber');
+
+  // Boshlang'ich +998 qo'yish
+  phoneInput.value = "+998";
+
+  // Inputda faqat raqam qabul qilish
+  phoneInput.addEventListener("input", () => {
+    // Faqat raqamlarni qoldirish (plusni ham qoldiramiz)
+    phoneInput.value = "+998" + phoneInput.value.replace(/\D/g, "").slice(3, 12);
+  });
 
   const sendDataButton = document.getElementById('sendData');
   sendDataButton.addEventListener('click', () => {
-    const number = document.getElementById('userNumber').value.trim();
+    const number = phoneInput.value.trim();
     const maps = document.getElementById('userMaps')?.value.trim();
     const note = document.getElementById('userNote')?.value.trim();
     const checkBox = document.getElementById('openOrderInfoID')?.checked;
+
+    // Telefon formati: +998 va keyingi 9 ta raqam
+    const phoneRegex = /^\+998\d{9}$/;
+    if (!phoneRegex.test(number)) {
+      alert("❗ Raqam formati noto‘g‘ri! Masalan: +998901234567");
+      return;
+    }
 
     const checkItems = document.querySelectorAll('.checkItem');
     const products = [];
@@ -1640,12 +1613,17 @@ document.addEventListener("DOMContentLoaded", () => {
       const price = item.getAttribute('data-price');
       const quantity = item.querySelector('.quantity')?.textContent.trim();
 
-      if (name && quantity && price && Number(quantity) > 0) {
-        products.push({ name, price, count: Number(quantity) });
+      if (name && quantity && price) {
+        products.push(`📦 ${name} x${quantity} | ${price} so'm`);
       }
     });
 
     const total = document.getElementById('totalID')?.textContent.trim();
+
+    if (!number || !maps || products.length === 0 || !checkBox) {
+      alert("❗ Iltimos, barcha maydonlarni to‘ldiring, mahsulot tanlang va checkni tasdiqlang!");
+      return;
+    }
 
     const data = {
       raqam: number,
@@ -1655,13 +1633,7 @@ document.addEventListener("DOMContentLoaded", () => {
       jami: `${total} so'm`
     };
 
-    // ❗ Eski tanlovni saqlab qo‘yamiz
-    localStorage.setItem("last_order", JSON.stringify(data));
-
     webApp.sendData(JSON.stringify(data));
     webApp.close();
   });
 });
-
-
-
